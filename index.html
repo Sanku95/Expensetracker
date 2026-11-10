@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Expense Tracker: Offline — Track smarter. Spend better.</title>
+<meta name="description" content="A privacy-first, offline expense tracker for Android. Record spending, set monthly targets, understand recurring commitments and see where your money goes.">
+<meta name="theme-color" content="#050507">
+<meta name="color-scheme" content="dark">
+<meta property="og:title" content="Expense Tracker: Offline — Track smarter. Spend better.">
+<meta property="og:description" content="Track everyday spending, stay ahead of recurring commitments, and understand your money — all on your own device.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Expense Tracker: Offline">
+<link rel="icon" href="assets/favicon-64.png" type="image/png" sizes="64x64">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+<script>
+  document.documentElement.classList.add("js");
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Expense Tracker: Offline",
+  "operatingSystem": "Android",
+  "applicationCategory": "FinanceApplication",
+  "description": "A privacy-first, offline expense tracker for Android. Record expenses, set monthly targets, manage recurring payments and understand your spending patterns.",
+  "featureList": [
+    "Offline expense tracking",
+    "Monthly spending targets",
+    "Recurring expense management",
+    "Spending insights",
+    "Personal, Business and Tour personas",
+    "JSON backup and restore",
+    "PDF and CSV export"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-arrow-right" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 4v15M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-chevron-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 01-3.4 0"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 11.5l2 2 4-4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10.5" width="16" height="10" rx="2.5"/><path d="M8 10.5V7a4 4 0 018 0v3.5"/><circle cx="12" cy="15.5" r="1"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18.5h2"/></symbol>
+  <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M6.5 18a4.5 4.5 0 01-.8-8.9A6 6 0 0117.4 8a5 5 0 01.6 10H6.5z"/></symbol>
+  <symbol id="i-wallet" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="14" rx="3"/><path d="M2.5 10h19"/><circle cx="17" cy="15" r="1.3"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></symbol>
+  <symbol id="i-pie" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-9-9v9h9z"/><path d="M15 3.6A9 9 0 0120.4 9H15V3.6z"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 1l4 4-4 4"/><path d="M3 11V9a4 4 0 014-4h14"/><path d="M7 23l-4-4 4-4"/><path d="M21 13v2a4 4 0 01-4 4H3"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 5v14M15 5v14"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+  <symbol id="i-sparkles" viewBox="0 0 24 24"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9L12 3z"/><path d="M19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8L19 16z"/></symbol>
+  <symbol id="i-food" viewBox="0 0 24 24"><path d="M4 11h16a8 8 0 01-16 0z"/><path d="M9 7c0-2 1-2 1-4M14 7c0-2 1-2 1-4"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 7h12l1 14H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></symbol>
+  <symbol id="i-car" viewBox="0 0 24 24"><path d="M4 16v-4l2-5h12l2 5v4"/><path d="M4 16h16M6 16v3M18 16v3"/><circle cx="7.5" cy="16" r="1.5"/><circle cx="16.5" cy="16" r="1.5"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 00-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 00-7.8 7.8l8.9 8.9 8.9-8.9a5.5 5.5 0 000-7.8z"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2.5"/><path d="M16 3v4M8 3v4M3 11h18"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h10M18 18h2"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="16" cy="18" r="2"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V7l-5-5z"/><path d="M14 2v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 11-2.6-6.4M21 3v6h-6"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 11-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 110-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6h.09A1.65 1.65 0 0010 3.09V3a2 2 0 114 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9v.09a1.65 1.65 0 001.51 1H21a2 2 0 110 4h-.09a1.65 1.65 0 00-1.51 1z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 24 24"><circle cx="4" cy="6" r="1.1"/><circle cx="4" cy="12" r="1.1"/><circle cx="4" cy="18" r="1.1"/><path d="M9 6h11M9 12h11M9 18h11"/></symbol>
+  <symbol id="i-trend" viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 7-8"/><path d="M15 7h6v6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.2 20a6.8 6.8 0 0113.6 0"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12.5" rx="2.4"/><path d="M9 7.5V6a2 2 0 012-2h2a2 2 0 012 2v1.5M3 12.5h18"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6.5 7l.8 13h9.4l.8-13M9 7V4.2h6V7"/></symbol>
+  <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14 6l4 4"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 16 10"><rect x="0" y="6" width="2.2" height="4" rx="0.6"/><rect x="4.2" y="4" width="2.2" height="6" rx="0.6"/><rect x="8.4" y="2" width="2.2" height="8" rx="0.6"/><rect x="12.6" y="0" width="2.2" height="10" rx="0.6"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 16 12"><path d="M8 11.6L5.9 9a3.2 3.2 0 014.2 0L8 11.6zM3.3 6.3l1.5 1.7a5.1 5.1 0 016.4 0l1.5-1.7a7.5 7.5 0 00-9.4 0zM.8 3.6l1.5 1.6a9.7 9.7 0 0111.4 0l1.5-1.6A11.9 11.9 0 00.8 3.6z"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 18 10"><rect x="0.5" y="1" width="14" height="8" rx="2" fill="none" stroke="currentColor"/><rect x="2" y="2.5" width="9.5" height="5" rx="1"/><path d="M16.5 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
+</svg>
+
+<header class="site-header" id="site-header">
+  <div class="container header__inner">
+    <a class="brand" href="#top" aria-label="Expense Tracker: Offline — home">
+      <span class="brand__mark" aria-hidden="true">
+        <img src="assets/app-icon.png" alt="" width="64" height="64">
+      </span>
+      <span class="brand__text">Expense Tracker</span>
+      <span class="brand__tag">Offline</span>
+    </a>
+
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#insights">Insights</a>
+      <a href="#personas">Personas</a>
+      <a href="#privacy">Privacy</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav__cta" href="https://play.google.com/store/apps/details?id=com.aistudio.expensetracker.kwtvpx" target="_blank" rel="noopener">
+        Get the app
+        <svg class="icon" aria-hidden="true"><use href="#i-arrow-right"/></svg>
+      </a>
+    </nav>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+      <svg class="icon nav-toggle__open" aria-hidden="true"><use href="#i-menu"/></svg>
+      <svg class="icon nav-toggle__close" aria-hidden="true"><use href="#i-x"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+  <span id="top"></span>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="container hero__inner">
+      <div class="hero__copy">
+        <p class="eyebrow eyebrow--pill"><span class="pulse-dot" aria-hidden="true"></span> Android · Offline-first · Privacy-first</p>
+        <h1>Take control of your expenses. <span>Understand your money.</span></h1>
+        <p class="hero__lede">Track everyday spending, stay ahead of recurring commitments, and see where your money actually goes — in a private expense tracker that works without the cloud.</p>
+
+        <div class="hero__actions">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.aistudio.expensetracker.kwtvpx" target="_blank" rel="noopener" aria-label="Get Expense Tracker: Offline on Google Play">
+            <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+          </a>
+          <a class="btn btn--ghost" href="#features">
+            Explore the app
+            <svg class="icon" aria-hidden="true"><use href="#i-arrow-down"/></svg>
+          </a>
+        </div>
+
+        <ul class="hero__micro">
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> No account required</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Works offline</li>
+          <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Data stays on-device</li>
+        </ul>
+      </div>
+
+      <div class="hero__visual">
+        <div class="hero__orbit" aria-hidden="true"></div>
+
+        <div class="device device--hero" aria-hidden="true">
+          <span class="device__btn device__btn--power"></span>
+          <span class="device__btn device__btn--vol-a"></span>
+          <span class="device__btn device__btn--vol-b"></span>
+          <div class="device__screen">
+            <span class="device__island"></span>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span class="statusbar__icons">
+                <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
+                <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
+                <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
+              </span>
+            </div>
+
+            <div class="appscreen appscreen--home">
+              <div class="home-top">
+                <span class="home-title">Expense Tracker</span>
+                <span class="home-actions">
+                  <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                  <svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg>
+                </span>
+              </div>
+
+              <div class="home-month">
+                <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+                <span class="home-month__label">August 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+              </div>
+
+              <div class="home-total">
+                <p class="home-total__label">Total Spending This Month</p>
+                <p class="home-total__amount">₹31,179.00</p>
+                <span class="home-total__btn"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></span>
+                <p class="home-total__note">No budget target set. Tap to define monthly budget. <svg class="icon" aria-hidden="true"><use href="#i-pencil"/></svg></p>
+              </div>
+
+              <div class="home-tabs">
+                <span class="home-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><b>Log Book</b></span>
+                <span class="home-tab"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg><b>Financial Insights</b></span>
+              </div>
+
+              <div class="home-chips">
+                <span class="home-chip is-active">All</span>
+                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg> BC</span>
+                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg> Bills</span>
+                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg> Entertainment</span>
+                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg> Food</span>
+                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg> Transport</span>
+              </div>
+
+              <p class="home-section">All Spending Logs (Personal)</p>
+
+              <div class="home-group"><span>15 Aug 2026</span><span>Total: ₹579.00</span></div>
+              <div class="home-tx">
+                <span class="home-tx__icon home-tx__icon--shop"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+                <span class="home-tx__main">
+                  <b>Perfume</b>
+                  <small><em class="cat cat--shop">Shopping</em><i>·</i>15 Aug 2026<span class="upi">UPI</span></small>
+                </span>
+                <span class="home-tx__right"><b>₹579.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+              </div>
+
+              <div class="home-group"><span>14 Aug 2026</span><span>Total: ₹3,211.00</span></div>
+              <div class="home-tx">
+                <span class="home-tx__icon home-tx__icon--bills"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+                <span class="home-tx__main">
+                  <b>Rtr insurance</b>
+                  <small><em class="cat cat--bills">Bills</em><i>·</i>14 Aug 2026<span class="upi">UPI</span></small>
+                </span>
+                <span class="home-tx__right"><b>₹1,350.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+              </div>
+              <div class="home-tx">
+                <span class="home-tx__icon home-tx__icon--health"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+                <span class="home-tx__main">
+                  <b>Natural Life Protein</b>
+                  <small><em class="cat cat--health">Health</em><i>·</i>14 Aug 2026<span class="upi">UPI</span></small>
+                </span>
+                <span class="home-tx__right"><b>₹1,861.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+              </div>
+
+              <span class="home-fab"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+
+              <div class="appnav appnav--home">
+                <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span>Personal</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>Business</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="float-card float-card--change" aria-hidden="true">
+          <div class="float-card__top"><span class="micro-label">Monthly change</span><span class="delta-pill">−10.4%</span></div>
+          <p class="float-card__big">₹2,140 <span>less</span></p>
+          <p class="float-card__sub">than October</p>
+          <svg class="sparkline" viewBox="0 0 180 38" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#A879FF" stop-opacity="0.32"/>
+                <stop offset="1" stop-color="#A879FF" stop-opacity="0"/>
+              </linearGradient>
+            </defs>
+            <path d="M0 30 L18 26 L36 29 L54 19 L72 23 L90 14 L108 18 L126 9 L144 13 L162 6 L180 9 L180 38 L0 38 Z" fill="url(#sparkFill)"/>
+            <path d="M0 30 L18 26 L36 29 L54 19 L72 23 L90 14 L108 18 L126 9 L144 13 L162 6 L180 9" fill="none" stroke="#A879FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRINCIPLES STRIP -->
+  <section class="principles" aria-label="Product principles">
+    <div class="container principles__grid">
+      <div class="principle">
+        <span class="principle__icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg></span>
+        <p><strong>Offline-first</strong><span>Core tracking works with no connection.</span></p>
+      </div>
+      <div class="principle">
+        <span class="principle__icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+        <p><strong>No account</strong><span>Open the app and start tracking.</span></p>
+      </div>
+      <div class="principle">
+        <span class="principle__icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span>
+        <p><strong>Local by default</strong><span>Your records live on your device.</span></p>
+      </div>
+      <div class="principle">
+        <span class="principle__icon"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></span>
+        <p><strong>Yours to export</strong><span>JSON backup, PDF and CSV, anytime.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section class="section" id="privacy">
+    <div class="container split">
+      <div class="copy reveal">
+        <p class="eyebrow"><span class="eyebrow__num">01</span> Privacy, by architecture</p>
+        <h2>Your money is personal. Your data should be too.</h2>
+        <p class="lede">No cloud account. No upload on launch. The app is built so your expense history lives on your phone — and keeps working even when the internet doesn't.</p>
+        <ul class="feature-list">
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg></span>
+            <div><h3>Offline by default</h3><p>Recording expenses, setting targets, viewing insights and managing recurring payments all work without a connection.</p></div>
+          </li>
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span>
+            <div><h3>No account wall</h3><p>Open the app and start. There is no mandatory sign-in, no cloud profile, and no email gate before your first expense.</p></div>
+          </li>
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span>
+            <div><h3>You control what leaves</h3><p>Backups and exports happen when you choose them. There is no background sync quietly copying your ledger somewhere else.</p></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="split__visual privacy-visual reveal">
+        <div class="privacy-board">
+          <div class="privacy-board__head">
+            <span class="micro-label">On this device</span>
+            <span class="local-status"><i></i> Local</span>
+          </div>
+          <div class="privacy-board__inner">
+            <div class="data-row">
+              <span class="data-row__icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <span class="data-row__text"><b>Expense records</b><small>64 entries · Nov 2026</small></span>
+              <span class="data-row__state"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Stored</span>
+            </div>
+            <div class="data-row">
+              <span class="data-row__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+              <span class="data-row__text"><b>Spending targets</b><small>Per persona, per month</small></span>
+              <span class="data-row__state"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Stored</span>
+            </div>
+            <div class="data-row">
+              <span class="data-row__icon"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+              <span class="data-row__text"><b>Recurring rules</b><small>4 active · 1 paused</small></span>
+              <span class="data-row__state"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> Stored</span>
+            </div>
+            <div class="data-row">
+              <span class="data-row__icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+              <span class="data-row__text"><b>Insights</b><small>Calculated locally</small></span>
+              <span class="data-row__state"><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> On-device</span>
+            </div>
+          </div>
+          <div class="privacy-board__export">
+            <span class="micro-label">Export when you choose</span>
+            <div class="file-chips">
+              <span>PDF</span><span>CSV</span><span>JSON</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="floating-note">
+          <span class="floating-note__icon is-off"><svg class="icon" aria-hidden="true"><use href="#i-cloud"/></svg><i class="slash"></i></span>
+          <div>
+            <strong>Cloud sync is off by default</strong>
+            <p>Nothing is uploaded unless you explicitly export or back up.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="section section--flush" id="personas">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__num">02</span> Personas</p>
+          <h2>One app. Different financial perspectives.</h2>
+        </div>
+        <p class="lede">Personal spending, business purchases and travel costs deserve separate books. Each persona keeps its own expenses, targets, recurring rules and insights — and only one is active at a time.</p>
+      </div>
+
+      <div class="persona-demo reveal">
+        <div class="persona-demo__tabs" role="tablist" aria-label="Example personas">
+          <button class="persona-tab is-active" type="button" role="tab" id="tab-personal" aria-selected="true" aria-controls="panel-personal" data-persona="personal">
+            <span class="persona-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+            <span class="persona-tab__text"><b>Personal</b><small>Day-to-day life</small></span>
+            <svg class="icon persona-tab__arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+          </button>
+          <button class="persona-tab" type="button" role="tab" id="tab-business" aria-selected="false" aria-controls="panel-business" tabindex="-1" data-persona="business">
+            <span class="persona-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+            <span class="persona-tab__text"><b>Business</b><small>Work &amp; operations</small></span>
+            <svg class="icon persona-tab__arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+          </button>
+          <button class="persona-tab" type="button" role="tab" id="tab-tour" aria-selected="false" aria-controls="panel-tour" tabindex="-1" data-persona="tour">
+            <span class="persona-tab__icon"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span>
+            <span class="persona-tab__text"><b>Tour</b><small>Travel &amp; trips</small></span>
+            <svg class="icon persona-tab__arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+          </button>
+          <p class="persona-demo__hint"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> Records stay separate. Switching never merges ledgers.</p>
+        </div>
+
+        <div class="persona-demo__stage">
+          <div class="persona-panel is-active" role="tabpanel" id="panel-personal" aria-labelledby="tab-personal" data-panel="personal">
+            <div class="persona-panel__head">
+              <div class="persona-panel__id">
+                <span class="persona-avatar"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+                <div><b>Personal</b><small>Everyday spending</small></div>
+              </div>
+              <span class="active-pill"><i></i> Active</span>
+            </div>
+            <div class="persona-panel__body">
+              <div class="persona-row"><span class="micro-label">November 2026</span><span class="micro-label">Target ₹25,000</span></div>
+              <p class="persona-amount">₹18,420</p>
+              <div class="meter meter--lg"><span style="width:74%"></span></div>
+              <div class="persona-row persona-row--muted"><span>74% of target used</span><span>₹6,580 left</span></div>
+              <ul class="cat-list">
+                <li><span class="cat-dot" style="--c:#A879FF"></span><span class="cat-name">Food</span><span class="cat-bar"><i style="width:74%"></i></span><b>₹5,894</b></li>
+                <li><span class="cat-dot" style="--c:#8050F5"></span><span class="cat-name">Shopping</span><span class="cat-bar"><i style="width:48%"></i></span><b>₹3,868</b></li>
+                <li><span class="cat-dot" style="--c:#5B3AA6"></span><span class="cat-name">Transport</span><span class="cat-bar"><i style="width:39%"></i></span><b>₹3,131</b></li>
+              </ul>
+            </div>
+            <div class="persona-panel__foot"><span>64 transactions</span><span>Separate ledger · Preserved</span></div>
+          </div>
+
+          <div class="persona-panel" role="tabpanel" id="panel-business" aria-labelledby="tab-business" data-panel="business" hidden>
+            <div class="persona-panel__head">
+              <div class="persona-panel__id">
+                <span class="persona-avatar"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+                <div><b>Business</b><small>Work &amp; operations</small></div>
+              </div>
+              <span class="active-pill"><i></i> Active</span>
+            </div>
+            <div class="persona-panel__body">
+              <div class="persona-row"><span class="micro-label">November 2026</span><span class="micro-label">Target ₹90,000</span></div>
+              <p class="persona-amount">₹64,250</p>
+              <div class="meter meter--lg"><span style="width:71%"></span></div>
+              <div class="persona-row persona-row--muted"><span>71% of target used</span><span>₹25,750 left</span></div>
+              <ul class="cat-list">
+                <li><span class="cat-dot" style="--c:#A879FF"></span><span class="cat-name">Travel</span><span class="cat-bar"><i style="width:84%"></i></span><b>₹21,380</b></li>
+                <li><span class="cat-dot" style="--c:#8050F5"></span><span class="cat-name">Software</span><span class="cat-bar"><i style="width:50%"></i></span><b>₹12,850</b></li>
+                <li><span class="cat-dot" style="--c:#5B3AA6"></span><span class="cat-name">Meals</span><span class="cat-bar"><i style="width:38%"></i></span><b>₹9,638</b></li>
+              </ul>
+            </div>
+            <div class="persona-panel__foot"><span>38 transactions</span><span>Separate ledger · Preserved</span></div>
+          </div>
+
+          <div class="persona-panel" role="tabpanel" id="panel-tour" aria-labelledby="tab-tour" data-panel="tour" hidden>
+            <div class="persona-panel__head">
+              <div class="persona-panel__id">
+                <span class="persona-avatar"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span>
+                <div><b>Tour</b><small>Travel &amp; trips</small></div>
+              </div>
+              <span class="active-pill"><i></i> Active</span>
+            </div>
+            <div class="persona-panel__body">
+              <div class="persona-row"><span class="micro-label">November 2026</span><span class="micro-label">Target ₹18,000</span></div>
+              <p class="persona-amount">₹12,840</p>
+              <div class="meter meter--lg"><span style="width:71%"></span></div>
+              <div class="persona-row persona-row--muted"><span>71% of target used</span><span>₹5,160 left</span></div>
+              <ul class="cat-list">
+                <li><span class="cat-dot" style="--c:#A879FF"></span><span class="cat-name">Stay</span><span class="cat-bar"><i style="width:88%"></i></span><b>₹5,136</b></li>
+                <li><span class="cat-dot" style="--c:#8050F5"></span><span class="cat-name">Food</span><span class="cat-bar"><i style="width:44%"></i></span><b>₹2,568</b></li>
+                <li><span class="cat-dot" style="--c:#5B3AA6"></span><span class="cat-name">Transport</span><span class="cat-bar"><i style="width:33%"></i></span><b>₹1,926</b></li>
+              </ul>
+            </div>
+            <div class="persona-panel__foot"><span>27 transactions</span><span>Separate ledger · Preserved</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACK -->
+  <section class="section" id="features">
+    <div class="container split split--reverse">
+      <div class="copy reveal">
+        <p class="eyebrow"><span class="eyebrow__num">03</span> Everyday tracking</p>
+        <h2>Log it in seconds. Find it when you need it.</h2>
+        <p class="lede">The fastest expense tracker is the one you actually keep using. Entry takes a few taps, and every record stays easy to browse, edit or remove.</p>
+        <div class="mini-features">
+          <div>
+            <span class="mini-features__icon"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+            <h3>Quick entry</h3>
+            <p>Amount, category, description, payment type and date — with sensible defaults.</p>
+          </div>
+          <div>
+            <span class="mini-features__icon"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+            <h3>Categories that fit</h3>
+            <p>Organise spending the way you think about it, from groceries to client travel.</p>
+          </div>
+          <div>
+            <span class="mini-features__icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+            <h3>Every payment type</h3>
+            <p>UPI, card, cash or bank — see spending by how you paid, as well as by category.</p>
+          </div>
+          <div>
+            <span class="mini-features__icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+            <h3>A readable history</h3>
+            <p>Expenses grouped by day and month. Open any record to edit or delete it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="split__visual track-visual reveal">
+        <div class="device device--track" aria-hidden="true">
+          <span class="device__btn device__btn--power"></span>
+          <span class="device__btn device__btn--vol-a"></span>
+          <span class="device__btn device__btn--vol-b"></span>
+          <div class="device__screen">
+            <span class="device__island"></span>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span class="statusbar__icons">
+                <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
+                <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
+                <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
+              </span>
+            </div>
+            <div class="appscreen">
+              <div class="screen-head">
+                <span class="screen-title">Log Book</span>
+                <span class="app-iconbtn"><svg class="icon"><use href="#i-search"/></svg></span>
+              </div>
+              <div class="month-nav">
+                <svg class="icon"><use href="#i-chevron-left"/></svg>
+                <span>November 2026</span>
+                <svg class="icon"><use href="#i-chevron-right"/></svg>
+              </div>
+              <div class="month-chip-row">
+                <span class="month-chip is-active">All</span>
+                <span class="month-chip">Food</span>
+                <span class="month-chip">Shopping</span>
+                <span class="month-chip">Transport</span>
+              </div>
+
+              <div class="day-group">
+                <div class="day-group__head"><span>Today · 10 Nov</span><span>₹1,197</span></div>
+                <ul class="tx-list tx-list--full">
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-food"/></svg></span>
+                    <span class="tx-main"><b>Lunch with the team</b><small>Food · UPI</small></span>
+                    <span class="tx-amount">−₹482</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-car"/></svg></span>
+                    <span class="tx-main"><b>Uber to office</b><small>Transport · Card</small></span>
+                    <span class="tx-amount">−₹265</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-food"/></svg></span>
+                    <span class="tx-main"><b>Chai &amp; snacks</b><small>Food · Cash</small></span>
+                    <span class="tx-amount">−₹90</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-car"/></svg></span>
+                    <span class="tx-main"><b>Metro card recharge</b><small>Transport · UPI</small></span>
+                    <span class="tx-amount">−₹200</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-food"/></svg></span>
+                    <span class="tx-main"><b>Coffee run</b><small>Food · Card</small></span>
+                    <span class="tx-amount">−₹160</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="day-group">
+                <div class="day-group__head"><span>Yesterday · 9 Nov</span><span>₹4,089</span></div>
+                <ul class="tx-list tx-list--full">
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-bag"/></svg></span>
+                    <span class="tx-main"><b>Amazon order</b><small>Shopping · Card</small></span>
+                    <span class="tx-amount">−₹1,299</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-bolt"/></svg></span>
+                    <span class="tx-main"><b>Electricity bill</b><small>Bills · UPI</small></span>
+                    <span class="tx-amount">−₹1,840</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-food"/></svg></span>
+                    <span class="tx-main"><b>Swiggy dinner</b><small>Food · UPI</small></span>
+                    <span class="tx-amount">−₹640</span>
+                  </li>
+                  <li>
+                    <span class="cat-icon"><svg class="icon"><use href="#i-heart"/></svg></span>
+                    <span class="tx-main"><b>Pharmacy</b><small>Health · Card</small></span>
+                    <span class="tx-amount">−₹310</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="appnav">
+                <span class="appnav__item is-active"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
+                <span class="appnav__item"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
+                <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+              </div>
+
+              <div class="add-card" aria-hidden="true">
+                <div class="add-card__head"><span class="micro-label">New expense</span><span class="add-card__close"><svg class="icon"><use href="#i-x"/></svg></span></div>
+                <p class="add-card__amount">₹482</p>
+                <div class="add-card__field"><span class="micro-label">Category</span><b><svg class="icon"><use href="#i-food"/></svg> Food</b></div>
+                <div class="add-card__grid">
+                  <div class="add-card__field"><span class="micro-label">Paid with</span><b>UPI</b></div>
+                  <div class="add-card__field"><span class="micro-label">Date</span><b>Today</b></div>
+                </div>
+                <span class="add-card__cta"><svg class="icon"><use href="#i-plus"/></svg> Add expense</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSIGHTS -->
+  <section class="section section--insights" id="insights">
+    <div class="insights__glow" aria-hidden="true"></div>
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__num">04</span> Financial intelligence</p>
+          <h2>Don't just track your expenses. Understand them.</h2>
+        </div>
+        <p class="lede">A list of transactions tells you what happened. Insights tell you what changed, where it went, and what deserves a closer look — without sending your data anywhere.</p>
+      </div>
+
+      <div class="insights__body">
+        <div class="insights__features reveal">
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+            <h3>What changed this month</h3>
+            <p>A clear read on meaningful shifts: overall spending, categories that moved, and new commitments. No invented observations when data is thin.</p>
+          </article>
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <h3>Spending summary</h3>
+            <p>Total spent, transaction count, daily average and your biggest expense, side by side.</p>
+          </article>
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg></span>
+            <h3>Category distribution</h3>
+            <p>See which categories and payment types take the largest share of your month.</p>
+          </article>
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+            <h3>Weekly rhythm</h3>
+            <p>Weeks follow Monday to Sunday, with your highest, lowest and average week called out.</p>
+          </article>
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+            <h3>Largest transactions</h3>
+            <p>The five biggest expenses in the period, each one tap from the full record.</p>
+          </article>
+          <article class="insight-feature">
+            <span class="insight-feature__icon"><svg class="icon" aria-hidden="true"><use href="#i-search"/></svg></span>
+            <h3>Spending patterns</h3>
+            <p>Weekday versus weekend, frequent small purchases and repeated merchants — without judgement.</p>
+          </article>
+          <p class="insights__note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> All of this is calculated from your own records, on your own device.</p>
+        </div>
+
+        <div class="insights__visual reveal">
+          <div class="device device--tall" aria-hidden="true">
+            <span class="device__btn device__btn--power"></span>
+            <span class="device__btn device__btn--vol-a"></span>
+            <span class="device__btn device__btn--vol-b"></span>
+            <div class="device__screen">
+              <span class="device__island"></span>
+              <div class="statusbar">
+                <span>9:41</span>
+                <span class="statusbar__icons">
+                  <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
+                  <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
+                  <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
+                </span>
+              </div>
+              <div class="appscreen">
+                <div class="screen-head">
+                  <span class="screen-title">Insights</span>
+                  <span class="persona-pill persona-pill--sm"><i class="dot dot--personal"></i> Personal</span>
+                </div>
+                <div class="tabs">
+                  <span class="tab is-active">Overview</span>
+                  <span class="tab">Recurring</span>
+                  <span class="tab">Savings</span>
+                </div>
+
+                <div class="change-card">
+                  <div class="change-card__top">
+                    <span><svg class="icon"><use href="#i-sparkles"/></svg> What changed</span>
+                    <span class="delta-pill">−₹2,140</span>
+                  </div>
+                  <p><b>You spent less than October.</b></p>
+                  <p class="change-card__sub">Food down 18% · Shopping up ₹1,240</p>
+                </div>
+
+                <div class="metric-grid">
+                  <div><span>Total spent</span><b>₹18,420</b></div>
+                  <div><span>Transactions</span><b>64</b></div>
+                  <div><span>Daily average</span><b>₹614</b></div>
+                  <div><span>Biggest expense</span><b>₹4,250</b></div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-card__head"><span>Where it went</span><span>By category</span></div>
+                  <div class="donut-row">
+                    <div class="donut"><div class="donut__hole"><b>₹18.4k</b><small>this month</small></div></div>
+                    <ul class="legend">
+                      <li><i style="--c:#A879FF"></i>Food <b>32%</b></li>
+                      <li><i style="--c:#8050F5"></i>Shopping <b>21%</b></li>
+                      <li><i style="--c:#6A45C9"></i>Transport <b>17%</b></li>
+                      <li><i style="--c:#4A3187"></i>Bills <b>14%</b></li>
+                      <li><i style="--c:#2C2557"></i>Other <b>16%</b></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-card__head"><span>Weekly spending</span><span>Mon–Sun</span></div>
+                  <div class="bars">
+                    <div class="bar is-peak"><i style="--h:100%"></i><span>W1</span></div>
+                    <div class="bar"><i style="--h:76%"></i><span>W2</span></div>
+                    <div class="bar"><i style="--h:92%"></i><span>W3</span></div>
+                    <div class="bar"><i style="--h:55%"></i><span>W4</span></div>
+                    <div class="bar"><i style="--h:27%"></i><span>W5</span></div>
+                  </div>
+                  <p class="chart-note">Highest week: W1 · ₹5,240</p>
+                </div>
+
+                <div class="chart-card">
+                  <div class="chart-card__head"><span>Top expenses</span><span>This month</span></div>
+                  <ul class="top-list">
+                    <li><span>Croma · Shopping</span><b>₹4,250</b></li>
+                    <li><span>MakeMyTrip · Travel</span><b>₹3,120</b></li>
+                  </ul>
+                </div>
+
+                <div class="appnav">
+                  <span class="appnav__item"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
+                  <span class="appnav__item is-active"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
+                  <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECURRING -->
+  <section class="section" id="recurring">
+    <div class="container split split--reverse">
+      <div class="copy reveal">
+        <p class="eyebrow"><span class="eyebrow__num">05</span> Recurring commitments</p>
+        <h2>Know what's already spoken for.</h2>
+        <p class="lede">Subscriptions, rent, bills and other regular payments can be set up once and reviewed whenever you need. Upcoming commitments stay visible — without being mistaken for money already spent.</p>
+        <ul class="feature-list feature-list--compact">
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <div><h3>Monthly and annual view</h3><p>See what your active rules add up to over a month and a year, estimated from their frequency.</p></div>
+          </li>
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+            <div><h3>Upcoming payments</h3><p>Know what's due next, with local reminders before it lands.</p></div>
+          </li>
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-pause"/></svg></span>
+            <div><h3>Pause, resume, skip</h3><p>Life changes. Adjust a rule without losing track of the commitment.</p></div>
+          </li>
+          <li>
+            <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+            <div><h3>A rule is not an expense</h3><p>Recurring rules represent future commitments. They only count as spending when you record the actual payment.</p></div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="split__visual recurring-visual reveal">
+        <div class="device device--recurring" aria-hidden="true">
+          <span class="device__btn device__btn--power"></span>
+          <span class="device__btn device__btn--vol-a"></span>
+          <span class="device__btn device__btn--vol-b"></span>
+          <div class="device__screen">
+            <span class="device__island"></span>
+            <div class="statusbar">
+              <span>9:41</span>
+              <span class="statusbar__icons">
+                <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
+                <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
+                <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
+              </span>
+            </div>
+            <div class="appscreen">
+              <div class="screen-head">
+                <span class="screen-title">Insights</span>
+                <span class="persona-pill persona-pill--sm"><i class="dot dot--personal"></i> Personal</span>
+              </div>
+              <div class="tabs">
+                <span class="tab">Overview</span>
+                <span class="tab is-active">Recurring</span>
+                <span class="tab">Savings</span>
+              </div>
+
+              <div class="commit-grid">
+                <div class="commit-card">
+                  <span>Est. monthly</span>
+                  <b>₹20,447</b>
+                  <small>4 active · 1 paused</small>
+                </div>
+                <div class="commit-card">
+                  <span>Est. annual</span>
+                  <b>₹2,45,364</b>
+                  <small>Based on frequency</small>
+                </div>
+              </div>
+
+              <div class="list-head"><span>Upcoming</span><span class="link-muted">Next 30 days</span></div>
+              <ul class="upcoming-list">
+                <li>
+                  <span class="due-chip"><b>12</b>NOV</span>
+                  <span class="tx-main"><b>Netflix</b><small>Monthly · in 2 days</small></span>
+                  <span class="tx-amount">₹649</span>
+                </li>
+                <li>
+                  <span class="due-chip"><b>15</b>NOV</span>
+                  <span class="tx-main"><b>Gym membership</b><small>Monthly · in 5 days</small></span>
+                  <span class="tx-amount">₹1,499</span>
+                </li>
+                <li>
+                  <span class="due-chip"><b>01</b>DEC</span>
+                  <span class="tx-main"><b>Rent</b><small>Monthly · 1 Dec</small></span>
+                  <span class="tx-amount">₹18,000</span>
+                </li>
+              </ul>
+
+              <div class="list-head"><span>Active rules</span><span class="link-muted">Manage</span></div>
+              <ul class="rule-list">
+                <li>
+                  <span class="cat-icon"><svg class="icon"><use href="#i-repeat"/></svg></span>
+                  <span class="tx-main"><b>Netflix</b><small>Monthly · ₹649</small></span>
+                  <span class="rule-state"><svg class="icon"><use href="#i-pause"/></svg></span>
+                </li>
+                <li>
+                  <span class="cat-icon"><svg class="icon"><use href="#i-heart"/></svg></span>
+                  <span class="tx-main"><b>Gym membership</b><small>Monthly · ₹1,499</small></span>
+                  <span class="rule-state"><svg class="icon"><use href="#i-pause"/></svg></span>
+                </li>
+                <li>
+                  <span class="cat-icon"><svg class="icon"><use href="#i-wallet"/></svg></span>
+                  <span class="tx-main"><b>Rent</b><small>Monthly · ₹18,000</small></span>
+                  <span class="rule-state"><svg class="icon"><use href="#i-pause"/></svg></span>
+                </li>
+                <li>
+                  <span class="cat-icon"><svg class="icon"><use href="#i-cloud"/></svg></span>
+                  <span class="tx-main"><b>Cloud storage</b><small>Monthly · ₹299</small></span>
+                  <span class="rule-state"><svg class="icon"><use href="#i-pause"/></svg></span>
+                </li>
+                <li class="is-paused">
+                  <span class="cat-icon"><svg class="icon"><use href="#i-play"/></svg></span>
+                  <span class="tx-main"><b>Music streaming</b><small>Paused · ₹119</small></span>
+                  <span class="paused-pill">Paused</span>
+                </li>
+              </ul>
+
+              <div class="appnav">
+                <span class="appnav__item"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
+                <span class="appnav__item is-active"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
+                <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="float-card float-card--due" aria-hidden="true">
+          <span class="float-icon float-icon--sm"><svg class="icon"><use href="#i-calendar"/></svg></span>
+          <div>
+            <strong>₹2,148 due in 7 days</strong>
+            <p>2 upcoming payments</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- SAVINGS -->
+  <section class="section section--savings" id="savings">
+    <div class="container">
+      <div class="savings-band reveal">
+        <div class="savings-band__copy">
+          <p class="eyebrow"><span class="eyebrow__num">06</span> Savings, without judgement</p>
+          <h2>Find opportunities. You decide what matters.</h2>
+          <p class="lede">The app can point out patterns worth a second look — a category that crept up, a run of small purchases, a commitment you may have forgotten. It won't call your spending wasteful. That's your call.</p>
+          <p class="savings-band__note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> Savings figures are estimates based on your recorded spending, not promises. Every expense stays yours to judge.</p>
+        </div>
+
+        <div class="savings-cards">
+          <article class="save-card">
+            <div class="save-card__top">
+              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+              <span class="tag">Review</span>
+            </div>
+            <h3>Categories on the move</h3>
+            <p>Shopping is up on last month, across 8 orders.</p>
+            <div class="save-card__metric"><b>+₹1,240</b><span>vs October · estimate</span></div>
+          </article>
+          <article class="save-card">
+            <div class="save-card__top">
+              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
+              <span class="tag">Pattern</span>
+            </div>
+            <h3>Small, often</h3>
+            <p>23 purchases under ₹150 added up this month.</p>
+            <div class="save-card__metric"><b>₹2,180</b><span>across small purchases</span></div>
+          </article>
+          <article class="save-card">
+            <div class="save-card__top">
+              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg></span>
+              <span class="tag">Review</span>
+            </div>
+            <h3>Recurring, reconsidered</h3>
+            <p>Your active commitments, collected in one place.</p>
+            <div class="save-card__metric"><b>₹20,447<span>/mo</span></b><span>4 active · 1 paused</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPORT / PORTABILITY -->
+  <section class="section" id="export">
+    <div class="container">
+      <div class="section-head reveal">
+        <div>
+          <p class="eyebrow"><span class="eyebrow__num">07</span> Yours to keep</p>
+          <h2>Back it up. Take it with you.</h2>
+        </div>
+        <p class="lede">Your records shouldn't be trapped in an app. Create a local backup, export what you need, and restore it when you move devices.</p>
+      </div>
+
+      <div class="export-grid reveal">
+        <article class="export-card">
+          <div class="export-card__top">
+            <span class="export-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg></span>
+            <span class="file-tag">backup.json</span>
+          </div>
+          <h3>JSON backup &amp; restore</h3>
+          <p>A complete local backup of your records. Restore it on another install whenever you're ready.</p>
+        </article>
+        <article class="export-card">
+          <div class="export-card__top">
+            <span class="export-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
+            <span class="file-tag">statement.pdf</span>
+          </div>
+          <h3>PDF statements</h3>
+          <p>Clean monthly statements for your records, expense claims or simple peace of mind.</p>
+        </article>
+        <article class="export-card">
+          <div class="export-card__top">
+            <span class="export-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>
+            <span class="file-tag">transactions.csv</span>
+          </div>
+          <h3>CSV export</h3>
+          <p>Open your transactions in a spreadsheet and take the analysis wherever you like.</p>
+        </article>
+        <article class="export-card">
+          <div class="export-card__top">
+            <span class="export-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-bell"/></svg></span>
+            <span class="file-tag">on-device</span>
+          </div>
+          <h3>Useful notifications</h3>
+          <p>Daily reminders, weekly summaries, target alerts and upcoming recurring payments. Optional and relevant.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIVACY BAND -->
+  <section class="privacy-band">
+    <div class="container privacy-band__inner reveal">
+      <span class="privacy-band__icon"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span>
+      <p class="eyebrow">Built around your privacy</p>
+      <h2>No account. No cloud. No surprise uploads.</h2>
+      <p class="privacy-band__lede">Expense Tracker works from a simple premise: your financial life is yours. Keep every record on your device, share nothing by default, and export only when you decide to.</p>
+      <ul class="privacy-band__tags">
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Local-first storage</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> No mandatory sign-in</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> User-controlled backup</li>
+        <li><svg class="icon" aria-hidden="true"><use href="#i-check"/></svg> Offline analytics</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section" id="faq">
+    <div class="container faq-layout">
+      <div class="faq-intro reveal">
+        <p class="eyebrow"><span class="eyebrow__num">08</span> Questions</p>
+        <h2>The short answers.</h2>
+        <p class="lede">What the app does, where your data lives, and how the details work.</p>
+      </div>
+
+      <div class="faq-list reveal">
+        <details class="faq" name="faq">
+          <summary>Does Expense Tracker work without internet?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>Yes. Recording expenses, monthly targets, local analytics, recurring rules and reminders all work offline. Backups and exports are created on your device. Optional online assistance, if introduced, will be opt-in.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>Do I need to create an account?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>No. There is no mandatory sign-in or cloud profile. Your personas and records are stored locally on your Android device.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>Where is my data stored?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>In the app's local storage on your device. It is not uploaded automatically. You can create a JSON backup or export PDF and CSV files whenever you choose.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>What are personas?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>Separate financial contexts — Personal, Business and Tour — each with its own expenses, targets, recurring rules and insights. One persona is active at a time, and switching never merges or deletes the others.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>How do monthly targets work?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>Targets are set per persona and per calendar month. A target created mid-month applies to that whole month, including expenses recorded earlier. Targets don't carry forward automatically, and there are no rolling 30-day or custom 8th-to-8th cycles.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>Is AI used to analyse my spending?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>The core insights are calculated locally on your device. Optional online AI assistance is a future direction: it would be opt-in, require explicit consent, and send only minimised summaries — never your full database. Factual figures would still come from local calculations.</p></div>
+        </details>
+        <details class="faq" name="faq">
+          <summary>Can I move my data to a new phone?<span class="faq__icon" aria-hidden="true"></span></summary>
+          <div class="faq__answer"><p>Yes, through a local JSON backup and restore. Core features don't rely on cloud sync.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final" id="download">
+    <div class="container">
+      <div class="final__panel reveal">
+        <div class="final__grid" aria-hidden="true"></div>
+        <div class="final__glow" aria-hidden="true"></div>
+        <span class="final__mark" aria-hidden="true">
+          <img src="assets/app-icon.png" alt="" width="64" height="64">
+        </span>
+        <p class="eyebrow">Available for Android</p>
+        <h2>A clearer picture of your money starts here.</h2>
+        <p class="final__lede">Track your spending, understand the patterns, and keep every record on your own device.</p>
+        <div class="final__actions">
+          <a class="play-badge" href="https://play.google.com/store/apps/details?id=com.aistudio.expensetracker.kwtvpx" target="_blank" rel="noopener" aria-label="Get Expense Tracker: Offline on Google Play">
+            <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+          </a>
+          <a class="btn btn--ghost" href="#features">Explore features</a>
+        </div>
+        <p class="final__note"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg> No account. No cloud. Just your money, in your hands.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="#top" aria-label="Expense Tracker: Offline — home">
+          <span class="brand__mark" aria-hidden="true">
+            <img src="assets/app-icon.png" alt="" width="64" height="64">
+          </span>
+          <span class="brand__text">Expense Tracker</span>
+          <span class="brand__tag">Offline</span>
+        </a>
+        <p class="footer__tagline">Track. Control. Save.</p>
+        <p class="footer__note">An offline-first expense tracker for people who would rather understand their money than hand it over.</p>
+      </div>
+
+      <nav class="footer__nav" aria-label="Footer">
+        <div>
+          <h4>Product</h4>
+          <a href="#features">Expense tracking</a>
+          <a href="#insights">Insights</a>
+          <a href="#recurring">Recurring</a>
+          <a href="#savings">Savings</a>
+        </div>
+        <div>
+          <h4>More</h4>
+          <a href="#personas">Personas</a>
+          <a href="#privacy">Privacy</a>
+          <a href="https://sites.google.com/view/expense-trackins-privacypolicy/home" target="_blank" rel="noopener">Privacy policy</a>
+          <a href="#export">Backup &amp; export</a>
+          <a href="#faq">FAQ</a>
+        </div>
+      </nav>
+
+      <div class="footer__download">
+        <span class="micro-label">Get the app</span>
+        <a class="play-badge play-badge--sm" href="https://play.google.com/store/apps/details?id=com.aistudio.expensetracker.kwtvpx" target="_blank" rel="noopener" aria-label="Get Expense Tracker: Offline on Google Play">
+          <img src="assets/google-play-badge.png" alt="Get it on Google Play" width="646" height="250">
+        </a>
+        <span class="footer__platform"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg> Designed for Android</span>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© <span id="year">2026</span> Expense Tracker: Offline</span>
+      <a class="footer__policy" href="https://sites.google.com/view/expense-trackins-privacypolicy/home" target="_blank" rel="noopener">Privacy policy</a>
+      <span>Android is a trademark of Google LLC.</span>
+      <span>Interface visuals are illustrative; some details are still in development.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
