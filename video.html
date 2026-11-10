@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product Video Studio — Expense Tracker: Offline</title>
+<link rel="icon" href="assets/favicon-64.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #06070a;
+    --panel: #0d0f17;
+    --line: rgba(255, 255, 255, 0.1);
+    --violet: #8a5cf6;
+    --violet-bright: #a879ff;
+    --text: #ffffff;
+    --text-muted: #9496a8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+  }
+
+  /* Top Bar */
+  header {
+    height: 64px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background: rgba(13, 15, 23, 0.85);
+    backdrop-filter: blur(16px);
+  }
+  .brand-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-group img {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+  }
+  .brand-group h1 {
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .brand-group span {
+    font-size: 11px;
+    color: var(--violet-bright);
+    background: rgba(138, 92, 246, 0.15);
+    border: 1px solid rgba(138, 92, 246, 0.3);
+    padding: 2px 7px;
+    border-radius: 999px;
+  }
+
+  /* Workspace Layout */
+  .workspace {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px;
+    gap: 20px;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Video Viewport Stage */
+  .viewport-wrapper {
+    position: relative;
+    background: #000;
+    border: 1px solid rgba(138, 92, 246, 0.25);
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.7), 0 0 50px rgba(138, 92, 246, 0.12);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 100%;
+    transition: all 0.3s ease;
+  }
+  .viewport-wrapper.is-16-9 {
+    width: 960px;
+    height: 540px;
+  }
+  .viewport-wrapper.is-9-16 {
+    width: 360px;
+    height: 640px;
+  }
+
+  canvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: contain;
+  }
+
+  /* Control Panel */
+  .control-panel {
+    width: 100%;
+    max-width: 960px;
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .timeline-bar {
+    position: relative;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 999px;
+    cursor: pointer;
+    overflow: hidden;
+  }
+  .timeline-progress {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #8a5cf6, #c4a0ff);
+    border-radius: inherit;
+    transition: width 0.08s linear;
+  }
+
+  .controls-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .btn-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  button {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 550;
+    padding: 9px 16px;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: all 0.2s ease;
+  }
+  button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  button.active {
+    background: rgba(138, 92, 246, 0.25);
+    border-color: var(--violet);
+    color: var(--violet-bright);
+  }
+  button.btn-record {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 18px rgba(239, 68, 68, 0.35);
+  }
+  button.btn-record:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+  }
+  button.btn-record.recording {
+    background: #000;
+    border-color: #ef4444;
+    color: #ef4444;
+    animation: pulseRed 1s infinite alternate;
+  }
+  @keyframes pulseRed {
+    from { box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+    to { box-shadow: 0 0 25px rgba(239, 68, 68, 0.8); }
+  }
+
+  .timecode {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text-muted);
+  }
+  .timecode b {
+    color: #fff;
+  }
+
+  /* Scene Badges */
+  .scenes-nav {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    overflow-x: auto;
+    padding-bottom: 2px;
+  }
+  .scene-pill {
+    padding: 4px 10px;
+    font-size: 11px;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+  }
+  .scene-pill.active {
+    background: rgba(138, 92, 246, 0.2);
+    border-color: var(--violet);
+    color: #fff;
+  }
+
+  /* Recording Overlay Notification */
+  .recording-banner {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: #10121a;
+    border: 1px solid var(--violet);
+    padding: 14px 20px;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+    display: none;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+    font-size: 13px;
+  }
+  .recording-banner .record-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ef4444;
+    animation: blink 0.8s infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  @media (max-width: 900px) {
+    .viewport-wrapper.is-16-9 {
+      width: 100%;
+      height: calc(100vw * 9 / 16);
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="brand-group">
+    <img src="assets/app-icon.png" alt="App Logo">
+    <h1>Expense Tracker: Offline</h1>
+    <span>Product Video Studio</span>
+  </div>
+  <a href="index.html" style="font-size: 12.5px; color: var(--text-muted); text-decoration: none;">← Back to Website</a>
+</header>
+
+<main class="workspace">
+  <div id="viewportWrapper" class="viewport-wrapper is-16-9">
+    <canvas id="videoCanvas" width="1920" height="1080"></canvas>
+  </div>
+
+  <div class="control-panel">
+    <div class="timeline-bar" id="timelineBar">
+      <div class="timeline-progress" id="timelineProgress"></div>
+    </div>
+
+    <div class="controls-row">
+      <div class="btn-group">
+        <button id="btnPlay">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+          <span id="playText">Play Reel</span>
+        </button>
+        <button id="btnRestart">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 11-2.6-6.4M21 3v6h-6"/></svg>
+          Restart
+        </button>
+        <button id="btnMute">
+          <span id="muteIcon">🔊</span>
+          <span id="muteText">Audio ON</span>
+        </button>
+      </div>
+
+      <div class="timecode">
+        <span id="currentTime">00:00</span> / <span id="totalTime">00:25</span>
+      </div>
+
+      <div class="btn-group">
+        <button id="btnFormat169" class="active">16:9 Landscape</button>
+        <button id="btnFormat916">9:16 Shorts/Reel</button>
+        <button id="btnRecord" class="btn-record">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          <span>Export 1080p Video</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="scenes-nav" id="scenesNav">
+      <div class="scene-pill active" data-time="0">1. Problem & Hook</div>
+      <div class="scene-pill" data-time="4.5">2. 100% Offline App</div>
+      <div class="scene-pill" data-time="9.5">3. Live Expense Logging</div>
+      <div class="scene-pill" data-time="15.0">4. Target & Personas</div>
+      <div class="scene-pill" data-time="19.5">5. Zero Cloud Privacy</div>
+      <div class="scene-pill" data-time="23.0">6. Call to Action</div>
+    </div>
+  </div>
+</main>
+
+<div class="recording-banner" id="recordingBanner">
+  <div class="record-dot"></div>
+  <span>Recording 60 FPS video... Download will start when the reel ends.</span>
+</div>
+
+<script>
+(function() {
+  "use strict";
+
+  const canvas = document.getElementById("videoCanvas");
+  const ctx = canvas.getContext("2d");
+  const viewportWrapper = document.getElementById("viewportWrapper");
+
+  const btnPlay = document.getElementById("btnPlay");
+  const playText = document.getElementById("playText");
+  const btnRestart = document.getElementById("btnRestart");
+  const btnMute = document.getElementById("btnMute");
+  const muteIcon = document.getElementById("muteIcon");
+  const muteText = document.getElementById("muteText");
+  const btnFormat169 = document.getElementById("btnFormat169");
+  const btnFormat916 = document.getElementById("btnFormat916");
+  const btnRecord = document.getElementById("btnRecord");
+  const timelineBar = document.getElementById("timelineBar");
+  const timelineProgress = document.getElementById("timelineProgress");
+  const currentTimeEl = document.getElementById("currentTime");
+  const scenePills = document.querySelectorAll(".scene-pill");
+  const recordingBanner = document.getElementById("recordingBanner");
+
+  // Load App Assets
+  const appIcon = new Image();
+  appIcon.src = "assets/app-icon.png";
+  const playBadge = new Image();
+  playBadge.src = "assets/google-play-badge.png";
+
+  // Video State
+  const TOTAL_DURATION = 26.0; // 26 seconds product reel
+  let isPlaying = false;
+  let currentTime = 0;
+  let lastFrameTime = performance.now();
+  let isVertical = false;
+  let isAudioEnabled = true;
+
+  // Recording State
+  let isRecording = false;
+  let mediaRecorder = null;
+  let recordedChunks = [];
+
+  // Web Audio Synth Engine
+  let audioCtx = null;
+  let audioDest = null;
+
+  function initAudio() {
+    if (audioCtx) return;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
+    audioDest = audioCtx.createMediaStreamDestination();
+  }
+
+  function playSynthTone(freq, duration, type = "sine", gainVal = 0.15) {
+    if (!isAudioEnabled) return;
+    initAudio();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+
+    gain.gain.setValueAtTime(gainVal, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    if (audioDest) gain.connect(audioDest);
+
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration);
+  }
+
+  // Audio cues for scenes
+  const audioCues = {
+    0.1: () => playSynthTone(220, 1.2, "sine", 0.12),
+    4.5: () => { playSynthTone(330, 0.4, "triangle", 0.15); setTimeout(() => playSynthTone(440, 0.8, "sine", 0.15), 150); },
+    9.6: () => playSynthTone(587.33, 0.25, "sine", 0.2), // Log sound
+    11.2: () => playSynthTone(659.25, 0.25, "sine", 0.2), // Log sound 2
+    15.0: () => { playSynthTone(392, 0.3, "sine", 0.15); setTimeout(() => playSynthTone(523.25, 0.5, "triangle", 0.18), 120); },
+    19.5: () => playSynthTone(293.66, 0.8, "sawtooth", 0.08), // Security chord
+    23.0: () => { playSynthTone(440, 0.2, "sine", 0.15); setTimeout(() => playSynthTone(880, 0.6, "sine", 0.18), 150); }
+  };
+  let triggeredCues = new Set();
+
+  function triggerAudioAt(t) {
+    for (let key in audioCues) {
+      const cueTime = parseFloat(key);
+      if (t >= cueTime && !triggeredCues.has(cueTime)) {
+        triggeredCues.add(cueTime);
+        audioCues[key]();
+      }
+    }
+  }
+
+  // Formatting helpers
+  function setAspect(vertical) {
+    isVertical = vertical;
+    if (isVertical) {
+      canvas.width = 1080;
+      canvas.height = 1920;
+      viewportWrapper.className = "viewport-wrapper is-9-16";
+      btnFormat916.classList.add("active");
+      btnFormat169.classList.remove("active");
+    } else {
+      canvas.width = 1920;
+      canvas.height = 1080;
+      viewportWrapper.className = "viewport-wrapper is-16-9";
+      btnFormat169.classList.add("active");
+      btnFormat916.classList.remove("active");
+    }
+    renderScene(currentTime);
+  }
+
+  btnFormat169.onclick = () => setAspect(false);
+  btnFormat916.onclick = () => setAspect(true);
+
+  // Playback Controls
+  function togglePlay() {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+      if (currentTime >= TOTAL_DURATION) {
+        currentTime = 0;
+        triggeredCues.clear();
+      }
+      lastFrameTime = performance.now();
+      playText.textContent = "Pause";
+      initAudio();
+      if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+      requestAnimationFrame(loop);
+    } else {
+      playText.textContent = "Play Reel";
+    }
+  }
+
+  btnPlay.onclick = togglePlay;
+  btnRestart.onclick = () => {
+    currentTime = 0;
+    triggeredCues.clear();
+    renderScene(0);
+  };
+
+  btnMute.onclick = () => {
+    isAudioEnabled = !isAudioEnabled;
+    muteText.textContent = isAudioEnabled ? "Audio ON" : "Muted";
+    muteIcon.textContent = isAudioEnabled ? "🔊" : "🔇";
+  };
+
+  scenePills.forEach(pill => {
+    pill.onclick = () => {
+      currentTime = parseFloat(pill.dataset.time);
+      triggeredCues.clear();
+      renderScene(currentTime);
+    };
+  });
+
+  timelineBar.onclick = (e) => {
+    const rect = timelineBar.getBoundingClientRect();
+    const ratio = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    currentTime = ratio * TOTAL_DURATION;
+    triggeredCues.clear();
+    renderScene(currentTime);
+  };
+
+  // Main Loop
+  function loop(now) {
+    if (!isPlaying) return;
+    const delta = (now - lastFrameTime) / 1000;
+    lastFrameTime = now;
+
+    currentTime += delta;
+    triggerAudioAt(currentTime);
+
+    if (currentTime >= TOTAL_DURATION) {
+      currentTime = TOTAL_DURATION;
+      renderScene(currentTime);
+      isPlaying = false;
+      playText.textContent = "Replay Reel";
+
+      if (isRecording) {
+        stopRecording();
+      }
+      return;
+    }
+
+    renderScene(currentTime);
+    requestAnimationFrame(loop);
+  }
+
+  // Easings
+  function easeOutCubic(x) { return 1 - Math.pow(1 - x, 3); }
+  function easeInOutQuad(x) { return x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2; }
+  function clamp(val, min, max) { return Math.max(min, Math.min(max, val)); }
+
+  // Scene Renderer
+  function renderScene(t) {
+    // Update timeline UI
+    const progressPercent = (t / TOTAL_DURATION) * 100;
+    timelineProgress.style.width = progressPercent + "%";
+    const mins = Math.floor(t / 60);
+    const secs = Math.floor(t % 60);
+    const ms = Math.floor((t % 1) * 10);
+    currentTimeEl.innerHTML = `<b>${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}.${ms}</b>`;
+
+    // Highlight active scene pill
+    scenePills.forEach(pill => {
+      const pTime = parseFloat(pill.dataset.time);
+      pill.classList.toggle("active", t >= pTime && t < pTime + 4.5);
+    });
+
+    const W = canvas.width;
+    const H = canvas.height;
+
+    // 1. Dark Ambient Canvas Background
+    ctx.fillStyle = "#07080d";
+    ctx.fillRect(0, 0, W, H);
+
+    // Dynamic Violet Ambient Glow
+    const glowGrad = ctx.createRadialGradient(W / 2, H * 0.45, 50, W / 2, H * 0.45, W * 0.65);
+    glowGrad.addColorStop(0, "rgba(138, 92, 246, 0.16)");
+    glowGrad.addColorStop(0.5, "rgba(99, 44, 219, 0.05)");
+    glowGrad.addColorStop(1, "transparent");
+    ctx.fillStyle = glowGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle Grid Lines
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.02)";
+    ctx.lineWidth = 1;
+    const gridSize = 64;
+    for (let x = 0; x < W; x += gridSize) {
+      ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
+    }
+    for (let y = 0; y < H; y += gridSize) {
+      ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
+    }
+
+    // 2. Render Sequenced Scenes
+    if (t < 4.5) {
+      renderScene1_Hook(t, W, H);
+    } else if (t < 9.5) {
+      renderScene2_Intro(t - 4.5, W, H);
+    } else if (t < 15.0) {
+      renderScene3_Logging(t - 9.5, W, H);
+    } else if (t < 19.5) {
+      renderScene4_Personas(t - 15.0, W, H);
+    } else if (t < 23.0) {
+      renderScene5_Privacy(t - 19.5, W, H);
+    } else {
+      renderScene6_CTA(t - 23.0, W, H);
+    }
+  }
+
+  // --- SCENE 1: THE HOOK (0s - 4.5s) ---
+  function renderScene1_Hook(t, W, H) {
+    const p = easeOutCubic(clamp(t / 0.8, 0, 1));
+    const fadeOut = t > 3.8 ? clamp((4.5 - t) / 0.7, 0, 1) : 1;
+
+    ctx.save();
+    ctx.globalAlpha = fadeOut;
+
+    // Eyebrow
+    ctx.font = `600 ${isVertical ? 24 : 26}px 'Inter'`;
+    ctx.fillStyle = "#a879ff";
+    ctx.textAlign = "center";
+    ctx.fillText("TIRED OF FINANCES SNOOPING ON YOU?", W / 2, (H * 0.38) + (1 - p) * 20);
+
+    // Headline
+    ctx.font = `800 ${isVertical ? 64 : 88}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Your Money.", W / 2, (H * 0.48) + (1 - p) * 30);
+    ctx.fillStyle = "#8a5cf6";
+    ctx.fillText("Nobody Else's Business.", W / 2, (H * 0.58) + (1 - p) * 30);
+
+    // Subtext
+    ctx.font = `400 ${isVertical ? 28 : 34}px 'Inter'`;
+    ctx.fillStyle = "#9fa3b8";
+    ctx.fillText("No bank logins. No subscriptions. No cloud tracking.", W / 2, (H * 0.68));
+
+    ctx.restore();
+  }
+
+  // --- SCENE 2: APP INTRO & PHONE FLOAT (4.5s - 9.5s) ---
+  function renderScene2_Intro(t, W, H) {
+    const p = easeOutCubic(clamp(t / 0.9, 0, 1));
+    const fadeOut = t > 4.2 ? clamp((5.0 - t) / 0.8, 0, 1) : 1;
+
+    ctx.save();
+    ctx.globalAlpha = fadeOut;
+
+    // Header title
+    ctx.font = `800 ${isVertical ? 48 : 58}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center";
+    ctx.fillText("Track Smarter. Spend Better.", W / 2, isVertical ? 220 : 130);
+
+    ctx.font = `500 ${isVertical ? 24 : 28}px 'Inter'`;
+    ctx.fillStyle = "#a879ff";
+    ctx.fillText("100% Offline Personal Finance for Android", W / 2, isVertical ? 270 : 180);
+
+    // Draw Floating Phone Frame
+    const phoneW = isVertical ? 480 : 420;
+    const phoneH = phoneW * 2.05;
+    const phoneY = (isVertical ? H * 0.52 : H * 0.58) + (1 - p) * 80;
+
+    drawPhoneMockup(W / 2, phoneY, phoneW, phoneH, {
+      balance: 31179,
+      month: "August 2026",
+      logsCount: 1,
+      target: "₹25,000",
+      usedPercent: 74
+    });
+
+    ctx.restore();
+  }
+
+  // --- SCENE 3: LIVE EXPENSE LOGGING (9.5s - 15.0s) ---
+  function renderScene3_Logging(t, W, H) {
+    const p = easeOutCubic(clamp(t / 0.8, 0, 1));
+    const fadeOut = t > 4.8 ? clamp((5.5 - t) / 0.7, 0, 1) : 1;
+
+    ctx.save();
+    ctx.globalAlpha = fadeOut;
+
+    // Feature Badge
+    ctx.font = `700 ${isVertical ? 22 : 24}px 'Inter'`;
+    ctx.fillStyle = "#a879ff";
+    ctx.textAlign = "center";
+    ctx.fillText("INSTANT & EFFORTLESS", W / 2, isVertical ? 200 : 120);
+
+    ctx.font = `800 ${isVertical ? 50 : 62}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("One-Tap Spending Logs", W / 2, isVertical ? 260 : 180);
+
+    // Animated dynamic balance addition
+    const countUp = t > 1.2 ? clamp((t - 1.2) / 1.5, 0, 1) : 0;
+    const curBalance = Math.round(31179 + countUp * 1929);
+
+    const phoneW = isVertical ? 480 : 420;
+    const phoneH = phoneW * 2.05;
+    const phoneY = (isVertical ? H * 0.52 : H * 0.58);
+
+    drawPhoneMockup(W / 2, phoneY, phoneW, phoneH, {
+      balance: curBalance,
+      month: "August 2026",
+      logsCount: t > 1.2 ? 3 : 1,
+      target: "₹35,000",
+      usedPercent: Math.round(65 + countUp * 10)
+    });
+
+    // Floating callout card
+    if (t > 1.5) {
+      const cardAlpha = clamp((t - 1.5) / 0.5, 0, 1);
+      ctx.globalAlpha = cardAlpha * fadeOut;
+      drawHighlightCard(
+        isVertical ? W / 2 : W * 0.78,
+        isVertical ? H * 0.84 : H * 0.48,
+        "+ ₹1,350 RTR Insurance (Bills)",
+        "#a879ff"
+      );
+    }
+
+    ctx.restore();
+  }
+
+  // --- SCENE 4: MONTHLY TARGETS & PERSONAS (15.0s - 19.5s) ---
+  function renderScene4_Personas(t, W, H) {
+    const fadeOut = t > 3.8 ? clamp((4.5 - t) / 0.7, 0, 1) : 1;
+    ctx.save();
+    ctx.globalAlpha = fadeOut;
+
+    ctx.font = `700 ${isVertical ? 22 : 24}px 'Inter'`;
+    ctx.fillStyle = "#a879ff";
+    ctx.textAlign = "center";
+    ctx.fillText("MULTI-PERSONA FREEDOM", W / 2, isVertical ? 200 : 120);
+
+    ctx.font = `800 ${isVertical ? 50 : 64}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Personal · Business · Tour", W / 2, isVertical ? 260 : 180);
+
+    const isBiz = t > 2.0;
+
+    const phoneW = isVertical ? 480 : 420;
+    const phoneH = phoneW * 2.05;
+    const phoneY = (isVertical ? H * 0.52 : H * 0.58);
+
+    drawPhoneMockup(W / 2, phoneY, phoneW, phoneH, {
+      balance: isBiz ? 64250 : 18420,
+      month: "November 2026",
+      logsCount: 2,
+      target: isBiz ? "₹90,000" : "₹25,000",
+      usedPercent: 71,
+      persona: isBiz ? "Business" : "Personal"
+    });
+
+    ctx.restore();
+  }
+
+  // --- SCENE 5: ZERO CLOUD PRIVACY (19.5s - 23.0s) ---
+  function renderScene5_Privacy(t, W, H) {
+    const p = easeOutCubic(clamp(t / 0.7, 0, 1));
+    const fadeOut = t > 2.8 ? clamp((3.5 - t) / 0.7, 0, 1) : 1;
+
+    ctx.save();
+    ctx.globalAlpha = fadeOut;
+
+    ctx.textAlign = "center";
+    ctx.font = `700 ${isVertical ? 22 : 24}px 'Inter'`;
+    ctx.fillStyle = "#34d399"; // Green
+    ctx.fillText("🔒 ZERO TELEMETRY", W / 2, isVertical ? H * 0.32 : H * 0.32);
+
+    ctx.font = `800 ${isVertical ? 58 : 78}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("0 Bytes Sent to the Cloud.", W / 2, isVertical ? H * 0.42 : H * 0.44);
+
+    ctx.font = `400 ${isVertical ? 26 : 32}px 'Inter'`;
+    ctx.fillStyle = "#9fa3b8";
+    ctx.fillText("Encrypted, offline backups on your own device.", W / 2, isVertical ? H * 0.52 : H * 0.54);
+
+    // Privacy badges
+    const badges = ["✓ No Account", "✓ No Telemetry", "✓ JSON & PDF Export"];
+    badges.forEach((b, i) => {
+      ctx.font = `600 24px 'Inter'`;
+      ctx.fillStyle = "#a879ff";
+      const xOffset = (i - 1) * (isVertical ? 0 : 340);
+      const yOffset = isVertical ? (H * 0.62 + i * 50) : (H * 0.66);
+      ctx.fillText(b, W / 2 + xOffset, yOffset);
+    });
+
+    ctx.restore();
+  }
+
+  // --- SCENE 6: CALL TO ACTION (23.0s - 26.0s) ---
+  function renderScene6_CTA(t, W, H) {
+    const p = easeOutCubic(clamp(t / 0.8, 0, 1));
+
+    ctx.save();
+    ctx.textAlign = "center";
+
+    // App Logo with Glow
+    const iconSize = isVertical ? 140 : 160;
+    const iconY = (isVertical ? H * 0.28 : H * 0.25) - (1 - p) * 30;
+
+    ctx.shadowColor = "rgba(138, 92, 246, 0.6)";
+    ctx.shadowBlur = 40;
+    if (appIcon.complete && appIcon.naturalWidth > 0) {
+      ctx.drawImage(appIcon, W / 2 - iconSize / 2, iconY, iconSize, iconSize);
+    }
+    ctx.shadowBlur = 0;
+
+    // App Title
+    ctx.font = `800 ${isVertical ? 54 : 68}px 'Inter Tight'`;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Expense Tracker: Offline", W / 2, iconY + iconSize + 60);
+
+    ctx.font = `500 ${isVertical ? 26 : 30}px 'Inter'`;
+    ctx.fillStyle = "#a879ff";
+    ctx.fillText("Take control of your money today.", W / 2, iconY + iconSize + 110);
+
+    // Google Play Badge
+    const badgeW = isVertical ? 320 : 360;
+    const badgeH = badgeW * 0.387;
+    const badgeY = iconY + iconSize + 160;
+    if (playBadge.complete && playBadge.naturalWidth > 0) {
+      ctx.drawImage(playBadge, W / 2 - badgeW / 2, badgeY, badgeW, badgeH);
+    }
+
+    ctx.font = `500 ${isVertical ? 20 : 22}px 'Inter'`;
+    ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+    ctx.fillText("Available on Google Play Store", W / 2, badgeY + badgeH + 40);
+
+    ctx.restore();
+  }
+
+  // --- HELPER: DRAW DETAILED PHONE MOCKUP ---
+  function drawPhoneMockup(cx, cy, w, h, data) {
+    ctx.save();
+    ctx.translate(cx, cy);
+
+    // Device Shadow
+    ctx.shadowColor = "rgba(0, 0, 0, 0.8)";
+    ctx.shadowBlur = 70;
+    ctx.shadowOffsetY = 30;
+
+    // Outer Phone Body
+    ctx.fillStyle = "#12141e";
+    roundRect(ctx, -w / 2, -h / 2, w, h, 48, true, false);
+    ctx.shadowBlur = 0;
+
+    // Phone Edge Stroke
+    ctx.strokeStyle = "rgba(168, 121, 255, 0.28)";
+    ctx.lineWidth = 4;
+    roundRect(ctx, -w / 2, -h / 2, w, h, 48, false, true);
+
+    // Screen Mask & Background
+    ctx.save();
+    roundRect(ctx, -w / 2 + 8, -h / 2 + 8, w - 16, h - 16, 42, false, false);
+    ctx.clip();
+    ctx.fillStyle = "#0a0c14";
+    ctx.fillRect(-w / 2, -h / 2, w, h);
+
+    // Status bar
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "600 15px 'Inter'";
+    ctx.textAlign = "left";
+    ctx.fillText("9:41", -w / 2 + 30, -h / 2 + 34);
+
+    // Dynamic Island
+    ctx.fillStyle = "#000000";
+    roundRect(ctx, -45, -h / 2 + 16, 90, 24, 12, true, false);
+
+    // App Screen Header
+    ctx.font = "700 20px 'Inter Tight'";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText("Expense Tracker", -w / 2 + 24, -h / 2 + 76);
+
+    if (data.persona) {
+      ctx.font = "600 12px 'Inter'";
+      ctx.fillStyle = "#a879ff";
+      ctx.textAlign = "right";
+      ctx.fillText(data.persona, w / 2 - 24, -h / 2 + 76);
+      ctx.textAlign = "left";
+    }
+
+    // Month Selector Pill
+    ctx.fillStyle = "rgba(255, 255, 255, 0.05)";
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.lineWidth = 1;
+    roundRect(ctx, -w / 2 + 24, -h / 2 + 96, w - 48, 38, 10, true, true);
+    ctx.font = "500 13px 'Inter'";
+    ctx.fillStyle = "#9fa3b8";
+    ctx.textAlign = "center";
+    ctx.fillText(`‹   ${data.month}   ›`, 0, -h / 2 + 120);
+
+    // Total Spending Glowing Card
+    const cardY = -h / 2 + 150;
+    const cardH = 110;
+    const cardGrad = ctx.createLinearGradient(-w / 2, cardY, w / 2, cardY + cardH);
+    cardGrad.addColorStop(0, "#6839d2");
+    cardGrad.addColorStop(1, "#8b5cf6");
+    ctx.fillStyle = cardGrad;
+    roundRect(ctx, -w / 2 + 24, cardY, w - 48, cardH, 16, true, false);
+
+    ctx.textAlign = "left";
+    ctx.font = "500 12px 'Inter'";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.85)";
+    ctx.fillText("Total Spending This Month", -w / 2 + 40, cardY + 28);
+
+    ctx.font = "800 32px 'JetBrains Mono'";
+    ctx.fillStyle = "#ffffff";
+    ctx.fillText(`₹${data.balance.toLocaleString('en-IN')}.00`, -w / 2 + 40, cardY + 68);
+
+    ctx.font = "500 11px 'Inter'";
+    ctx.fillStyle = "rgba(255, 255, 255, 0.75)";
+    ctx.fillText(`Target: ${data.target} · ${data.usedPercent}% used`, -w / 2 + 40, cardY + 94);
+
+    // Category Chips
+    const chipsY = cardY + cardH + 16;
+    const chips = ["All", "Bills", "Food", "Travel"];
+    let cxOffset = -w / 2 + 24;
+    chips.forEach((c, idx) => {
+      ctx.fillStyle = idx === 0 ? "rgba(138, 92, 246, 0.25)" : "rgba(255, 255, 255, 0.05)";
+      ctx.strokeStyle = idx === 0 ? "#8a5cf6" : "rgba(255, 255, 255, 0.08)";
+      roundRect(ctx, cxOffset, chipsY, 56, 26, 8, true, true);
+      ctx.font = "500 11px 'Inter'";
+      ctx.fillStyle = idx === 0 ? "#ffffff" : "#9fa3b8";
+      ctx.textAlign = "center";
+      ctx.fillText(c, cxOffset + 28, chipsY + 17);
+      cxOffset += 62;
+    });
+
+    // Recent Transactions
+    let logY = chipsY + 44;
+    ctx.textAlign = "left";
+    ctx.font = "600 12px 'Inter'";
+    ctx.fillStyle = "#9fa3b8";
+    ctx.fillText("Recent Spending Logs", -w / 2 + 24, logY);
+
+    logY += 14;
+    const sampleLogs = [
+      { title: "Perfume Shopping", cat: "Shopping", amt: "₹579.00", color: "#a879ff" },
+      { title: "RTR Vehicle Insurance", cat: "Bills", amt: "₹1,350.00", color: "#60a5fa" },
+      { title: "Natural Life Protein", cat: "Health", amt: "₹1,861.00", color: "#34d399" }
+    ];
+
+    sampleLogs.slice(0, data.logsCount).forEach(item => {
+      ctx.fillStyle = "rgba(255, 255, 255, 0.04)";
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.07)";
+      roundRect(ctx, -w / 2 + 24, logY, w - 48, 48, 10, true, true);
+
+      // Category indicator dot
+      ctx.fillStyle = item.color;
+      ctx.beginPath();
+      ctx.arc(-w / 2 + 42, logY + 24, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Title & Category
+      ctx.font = "600 13px 'Inter'";
+      ctx.fillStyle = "#ffffff";
+      ctx.fillText(item.title, -w / 2 + 56, logY + 20);
+
+      ctx.font = "500 11px 'Inter'";
+      ctx.fillStyle = "#9fa3b8";
+      ctx.fillText(item.cat, -w / 2 + 56, logY + 36);
+
+      // Amount
+      ctx.font = "700 13px 'JetBrains Mono'";
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "right";
+      ctx.fillText(item.amt, w / 2 - 40, logY + 28);
+      ctx.textAlign = "left";
+
+      logY += 56;
+    });
+
+    // Bottom Navigation Bar
+    const navY = h / 2 - 58;
+    ctx.fillStyle = "#0e101a";
+    ctx.fillRect(-w / 2, navY, w, 58);
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+    ctx.beginPath(); ctx.moveTo(-w / 2, navY); ctx.lineTo(w / 2, navY); ctx.stroke();
+
+    ctx.font = "600 11px 'Inter'";
+    ctx.fillStyle = "#a879ff";
+    ctx.textAlign = "center";
+    ctx.fillText("● Personal", -w / 4, navY + 34);
+    ctx.fillStyle = "#64748b";
+    ctx.fillText("Business", w / 4, navY + 34);
+
+    ctx.restore();
+    ctx.restore();
+  }
+
+  function drawHighlightCard(x, y, text, color) {
+    ctx.save();
+    ctx.font = "600 18px 'Inter'";
+    const textW = ctx.measureText(text).width;
+    const pad = 24;
+
+    ctx.fillStyle = "rgba(18, 20, 32, 0.92)";
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1.5;
+    ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+    ctx.shadowBlur = 20;
+    roundRect(ctx, x - textW / 2 - pad, y - 24, textW + pad * 2, 48, 14, true, true);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.textAlign = "center";
+    ctx.fillText(text, x, y + 6);
+    ctx.restore();
+  }
+
+  function roundRect(ctx, x, y, width, height, radius, fill, stroke) {
+    ctx.beginPath();
+    ctx.moveTo(x + radius, y);
+    ctx.lineTo(x + width - radius, y);
+    ctx.quadraticCurveTo(x + width, y, x + width, y + radius);
+    ctx.lineTo(x + width, y + height - radius);
+    ctx.quadraticCurveTo(x + width, y + height, x + width - radius, y + height);
+    ctx.lineTo(x + radius, y + height);
+    ctx.quadraticCurveTo(x, y + height, x, y + height - radius);
+    ctx.lineTo(x, y + radius);
+    ctx.quadraticCurveTo(x, y, x + radius, y);
+    ctx.closePath();
+    if (fill) ctx.fill();
+    if (stroke) ctx.stroke();
+  }
+
+  // --- 1080P VIDEO RECORDER ---
+  btnRecord.onclick = () => {
+    if (isRecording) {
+      stopRecording();
+      return;
+    }
+    startRecording();
+  };
+
+  function startRecording() {
+    initAudio();
+    if (audioCtx && audioCtx.state === "suspended") audioCtx.resume();
+
+    // Reset video to start
+    currentTime = 0;
+    triggeredCues.clear();
+    isPlaying = true;
+    isRecording = true;
+    recordedChunks = [];
+
+    // Capture 60 FPS video stream from canvas
+    const canvasStream = canvas.captureStream(60);
+
+    // Combine with synthesized Web Audio destination stream
+    if (audioDest && audioDest.stream) {
+      audioDest.stream.getAudioTracks().forEach(track => {
+        canvasStream.addTrack(track);
+      });
+    }
+
+    const options = { mimeType: 'video/webm; codecs=vp9,opus' };
+    try {
+      mediaRecorder = new MediaRecorder(canvasStream, options);
+    } catch (e) {
+      mediaRecorder = new MediaRecorder(canvasStream);
+    }
+
+    mediaRecorder.ondataavailable = (event) => {
+      if (event.data.size > 0) {
+        recordedChunks.push(event.data);
+      }
+    };
+
+    mediaRecorder.onstop = () => {
+      const blob = new Blob(recordedChunks, { type: 'video/webm' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = `expense-tracker-product-video-${isVertical ? 'vertical' : 'landscape'}.webm`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => {
+        document.body.removeChild(a);
+        window.URL.revokeObjectURL(url);
+      }, 100);
+
+      btnRecord.classList.remove("recording");
+      btnRecord.querySelector("span").textContent = "Export 1080p Video";
+      recordingBanner.style.display = "none";
+      isRecording = false;
+    };
+
+    mediaRecorder.start(100);
+    btnRecord.classList.add("recording");
+    btnRecord.querySelector("span").textContent = "Recording...";
+    recordingBanner.style.display = "flex";
+    lastFrameTime = performance.now();
+    requestAnimationFrame(loop);
+  }
+
+  function stopRecording() {
+    if (mediaRecorder && mediaRecorder.state !== "inactive") {
+      mediaRecorder.stop();
+    }
+  }
+
+  // Initial draw
+  renderScene(0);
+})();
+</script>
+</body>
+</html>
