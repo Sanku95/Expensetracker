@@ -2280,6 +2280,14 @@ h2 {
   transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
 }
 
+/* Wide screens have room to the right of the phone: mirror the card there */
+@media (min-width: 1440px) {
+  .float-card--tip {
+    left: calc(50% + 153px);
+    right: auto;
+  }
+}
+
 .float-card--tip::after {
   content: "";
   position: absolute;
