@@ -1393,6 +1393,21 @@ h2 {
   height: 752px;
 }
 
+.device--savings .device__screen {
+  height: 716px;
+  background: #08090f;
+  padding: 0;
+  display: block;
+}
+
+.device__screenshot {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
 .device__btn {
   position: absolute;
   z-index: 4;
@@ -3430,6 +3445,10 @@ h2 {
   max-width: 48ch;
 }
 
+.savings-band__copy .feature-list {
+  margin-top: 24px;
+}
+
 .savings-band__note {
   display: flex;
   gap: 8px;
@@ -3448,6 +3467,20 @@ h2 {
   height: 13px;
   margin-top: 2px;
   color: var(--violet-bright);
+}
+
+.savings-visual {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  padding: 10px 0;
+}
+
+.float-card--savings {
+  left: -44px;
+  bottom: 84px;
+  width: 218px;
 }
 
 .savings-cards {
@@ -4535,6 +4568,7 @@ h2 {
   .device--track .device__screen { height: 652px; }
   .device--tall .device__screen { height: 716px; }
   .device--recurring .device__screen { height: 700px; }
+  .device--savings .device__screen { height: 652px; }
   .device__screen { border-width: 8px; border-radius: 42px; }
   .device__island { top: 8px; width: 78px; height: 21px; }
   .statusbar { padding: 12px 20px 0; height: 37px; }
@@ -4620,6 +4654,7 @@ h2 {
   .device--track .device__screen { height: 630px; }
   .device--tall .device__screen { height: 690px; }
   .device--recurring .device__screen { height: 676px; }
+  .device--savings .device__screen { height: 630px; }
   .brand__tag { display: none; }
   .footer__bottom { font-size: 9.5px; }
 }

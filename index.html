@@ -968,62 +968,52 @@
           <p class="eyebrow"><span class="eyebrow__num">06</span> Savings, without judgement</p>
           <h2>Find opportunities. You decide what matters.</h2>
           <p class="lede">The app can point out patterns worth a second look — a category that crept up, a run of small purchases, a commitment you may have forgotten. It won't call your spending wasteful. That's your call.</p>
+
+          <ul class="feature-list feature-list--compact">
+            <li>
+              <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg></span>
+              <div>
+                <h3>Identify low-value spending</h3>
+                <p>Detects frequent micro-payments (₹20 – ₹100) and calculates potential savings at a glance.</p>
+              </div>
+            </li>
+            <li>
+              <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+              <div>
+                <h3>Micro-goals with real impact</h3>
+                <p>Suggests simple, bite-sized actions — like skipping two small purchases to save ~₹76.</p>
+              </div>
+            </li>
+            <li>
+              <span class="feature-list__icon"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></span>
+              <div>
+                <h3>3-month baseline comparisons</h3>
+                <p>Flags when categories or memberships drift higher than your normal average so you can take action.</p>
+              </div>
+            </li>
+          </ul>
+
           <p class="savings-band__note"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg> Savings figures are estimates based on your recorded spending, not promises. Every expense stays yours to judge.</p>
         </div>
 
-        <div class="savings-cards">
-          <div class="savings-cards__header">
-            <span class="savings-cards__icon" aria-hidden="true"><svg class="icon"><use href="#i-piggy"/></svg></span>
-            <div>
-              <h3>Smart Savings Insights</h3>
-              <p>Actionable suggestions based on your recent spending trends</p>
+        <div class="savings-visual">
+          <div class="device device--savings" aria-label="Smart Savings screen preview">
+            <span class="device__btn device__btn--power"></span>
+            <span class="device__btn device__btn--vol-a"></span>
+            <span class="device__btn device__btn--vol-b"></span>
+            <div class="device__screen">
+              <img src="assets/savings-insights.jpg" alt="Smart Savings Insights in Expense Tracker" class="device__screenshot" width="458" height="1024" loading="lazy">
             </div>
           </div>
 
-          <article class="save-card">
-            <div class="save-card__top">
-              <span class="save-card__title">Review your Gym Spending</span>
-              <span class="tag">Review</span>
+          <aside class="float-card float-card--savings" aria-hidden="true">
+            <div class="float-card__top">
+              <span class="micro-label">Identified savings</span>
+              <span class="delta-pill">~40%</span>
             </div>
-            <p class="save-card__stat">You spent ₹3,122 more on Gym than last month.</p>
-            <div class="action-box">
-              <div class="action-box__head">
-                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
-                <span>What you can do</span>
-              </div>
-              <p>Check if you paid for anything extra or if your membership cost increased.</p>
-            </div>
-          </article>
-
-          <article class="save-card">
-            <div class="save-card__top">
-              <span class="save-card__title">Check Your Subscriptions</span>
-              <span class="tag">Subscriptions</span>
-            </div>
-            <p class="save-card__stat">You have 4 regular payments costing ₹16,610 every month.</p>
-            <div class="action-box">
-              <div class="action-box__head">
-                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
-                <span>What you can do</span>
-              </div>
-              <p>Check which services you still use. Cancel the ones you no longer need.</p>
-            </div>
-          </article>
-
-          <article class="save-card">
-            <div class="save-card__top">
-              <span class="save-card__title">Frequent Small UPI Payments</span>
-              <span class="tag">UPI</span>
-            </div>
-            <p class="save-card__stat">You made 5 small UPI payments this month. Together, they cost ₹190.</p>
-            <div class="action-box">
-              <div class="action-box__head">
-                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
-                <span>What you can do</span>
-              </div>
-              <p>Check where you make frequent small purchases. Setting a weekly limit may help you keep track.</p>
-            </div>
-          </article>
+            <p class="float-card__big float-card__big--sm">~₹76 <span>saved</span></p>
+            <p class="float-card__sub">by skipping 2 small buys</p>
+          </aside>
         </div>
       </div>
     </div>
