@@ -2268,7 +2268,7 @@ h2 {
   backdrop-filter: blur(16px);
 }
 
-.float-card--change {
+.float-card--tip {
   top: -8px;
   left: -124px;
   width: 232px;
@@ -4407,7 +4407,7 @@ h2 {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1160px) {
-  .float-card--change { left: -150px; }
+  .float-card--tip { left: -150px; }
   .float-card--biggest { left: -26px; }
   .float-card--due { right: -18px; }
   .insights__body { gap: 46px; grid-template-columns: minmax(0, 1fr) 420px; }
