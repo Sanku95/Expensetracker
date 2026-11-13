@@ -158,15 +158,19 @@
     var tipStart = null;
     var tipDuration = 1200;
 
+    var formatTip = function (value) {
+      return tipPrefix + value.toLocaleString("en-IN");
+    };
+
     var settleTip = function () {
-      tipAmount.textContent = tipPrefix + tipTarget;
+      tipAmount.textContent = formatTip(tipTarget);
     };
 
     var tickTip = function (stamp) {
       if (tipStart === null) tipStart = stamp;
       var progress = Math.min((stamp - tipStart) / tipDuration, 1);
       var eased = 1 - Math.pow(1 - progress, 3);
-      tipAmount.textContent = tipPrefix + Math.round(tipTarget * eased);
+      tipAmount.textContent = formatTip(Math.round(tipTarget * eased));
       if (progress < 1) {
         window.requestAnimationFrame(tickTip);
       } else {
