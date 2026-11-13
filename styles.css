@@ -2269,9 +2269,113 @@ h2 {
 }
 
 .float-card--tip {
-  top: -8px;
-  left: -124px;
-  width: 232px;
+  top: -10px;
+  left: -160px;
+  width: 268px;
+  padding: 18px 20px 16px;
+  border-color: rgba(168, 121, 255, 0.26);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.62), inset 0 1px 0 rgba(255, 255, 255, 0.06), 0 0 36px rgba(128, 80, 245, 0.16);
+  animation: floatTip 6.5s ease-in-out infinite;
+  will-change: transform;
+  transition: border-color 0.35s var(--ease), box-shadow 0.35s var(--ease);
+}
+
+.float-card--tip::after {
+  content: "";
+  position: absolute;
+  inset: -45% -25% -70% -35%;
+  z-index: -1;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background: radial-gradient(52% 52% at 22% 16%, rgba(168, 121, 255, 0.2), transparent 68%);
+  opacity: 0.55;
+  animation: floatTipGlow 6.5s ease-in-out infinite;
+}
+
+.float-card--tip:hover {
+  border-color: rgba(168, 121, 255, 0.5);
+  box-shadow: 0 34px 80px rgba(0, 0, 0, 0.68), inset 0 1px 0 rgba(255, 255, 255, 0.08), 0 0 52px rgba(168, 121, 255, 0.3);
+}
+
+.float-card__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.float-card__chip {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 8px;
+  border: 1px solid rgba(168, 121, 255, 0.3);
+  background: rgba(128, 80, 245, 0.14);
+  color: var(--violet-bright);
+}
+
+.float-card__chip .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.float-card--tip .float-card__top .micro-label {
+  font-size: 8.5px;
+}
+
+.float-card--tip .delta-pill {
+  padding: 4px 9px;
+  font-size: 9px;
+}
+
+.float-card--tip .float-card__big--tip {
+  margin-top: 12px;
+  font-size: 32px;
+}
+
+.float-card--tip .float-card__big--tip b {
+  font-weight: 600;
+}
+
+.float-card--tip .float-card__sub {
+  margin-top: 5px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.float-card--tip .sparkline {
+  height: 40px;
+  margin-top: 12px;
+}
+
+.sparkline--tip .spark-line {
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  animation: drawTipLine 1.5s var(--ease) 0.5s forwards;
+}
+
+.sparkline--tip .spark-fill {
+  opacity: 0;
+  animation: fadeTipFill 1.1s var(--ease) 1.15s forwards;
+}
+
+@keyframes drawTipLine {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeTipFill {
+  to { opacity: 1; }
+}
+
+@keyframes floatTip {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(7px); }
+}
+
+@keyframes floatTipGlow {
+  0%, 100% { opacity: 0.45; transform: scale(1); }
+  50% { opacity: 0.78; transform: scale(1.06); }
 }
 
 .float-card__top {
@@ -4390,7 +4494,9 @@ h2 {
   }
 
   .device--hero,
-  .floating-note {
+  .floating-note,
+  .float-card--tip,
+  .float-card--tip::after {
     animation: none !important;
   }
 
@@ -4407,7 +4513,7 @@ h2 {
 /* ---------- Responsive ---------- */
 
 @media (max-width: 1160px) {
-  .float-card--tip { left: -150px; }
+  .float-card--tip { left: -186px; }
   .float-card--biggest { left: -26px; }
   .float-card--due { right: -18px; }
   .insights__body { gap: 46px; grid-template-columns: minmax(0, 1fr) 420px; }

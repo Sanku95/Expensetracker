@@ -148,4 +148,38 @@
       observer.observe(item);
     });
   }
+
+  /* Hero saving tip: count-up synced with the phone mockup entrance */
+  var tipAmount = document.querySelector(".float-card__amount");
+
+  if (tipAmount && !reduceMotion) {
+    var tipTarget = parseFloat(tipAmount.getAttribute("data-count-to") || "0", 10);
+    var tipPrefix = tipAmount.getAttribute("data-count-prefix") || "";
+    var tipStart = null;
+    var tipDuration = 1200;
+
+    var settleTip = function () {
+      tipAmount.textContent = tipPrefix + tipTarget;
+    };
+
+    var tickTip = function (stamp) {
+      if (tipStart === null) tipStart = stamp;
+      var progress = Math.min((stamp - tipStart) / tipDuration, 1);
+      var eased = 1 - Math.pow(1 - progress, 3);
+      tipAmount.textContent = tipPrefix + Math.round(tipTarget * eased);
+      if (progress < 1) {
+        window.requestAnimationFrame(tickTip);
+      } else {
+        settleTip();
+      }
+    };
+
+    window.requestAnimationFrame(function (stamp) {
+      tipStart = stamp;
+      tickTip(stamp);
+    });
+
+    /* guarantee the final value even if frames are throttled */
+    window.setTimeout(settleTip, tipDuration + 300);
+  }
 })();

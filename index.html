@@ -263,18 +263,24 @@
         </div>
 
         <aside class="float-card float-card--tip" aria-hidden="true">
-          <div class="float-card__top"><span class="micro-label">Saving tip</span><span class="delta-pill">Smart Savings</span></div>
-          <p class="float-card__big float-card__big--sm">~₹76 <span>saved</span></p>
+          <div class="float-card__top">
+            <span class="float-card__label">
+              <span class="float-card__chip"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg></span>
+              <span class="micro-label">Saving tip</span>
+            </span>
+            <span class="delta-pill">Smart Savings</span>
+          </div>
+          <p class="float-card__big float-card__big--tip"><b class="float-card__amount" data-count-to="76" data-count-prefix="~₹">~₹76</b> <span>saved</span></p>
           <p class="float-card__sub">skip 2 small buys a week</p>
-          <svg class="sparkline" viewBox="0 0 180 38" preserveAspectRatio="none">
+          <svg class="sparkline sparkline--tip" viewBox="0 0 180 38" preserveAspectRatio="none">
             <defs>
               <linearGradient id="sparkFill" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0" stop-color="#A879FF" stop-opacity="0.32"/>
                 <stop offset="1" stop-color="#A879FF" stop-opacity="0"/>
               </linearGradient>
             </defs>
-            <path d="M0 33 L18 31 L36 32 L54 25 L72 27 L90 20 L108 17 L126 12 L144 9 L162 5 L180 3 L180 38 L0 38 Z" fill="url(#sparkFill)"/>
-            <path d="M0 33 L18 31 L36 32 L54 25 L72 27 L90 20 L108 17 L126 12 L144 9 L162 5 L180 3" fill="none" stroke="#A879FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="spark-fill" d="M0 33 L18 31 L36 32 L54 25 L72 27 L90 20 L108 17 L126 12 L144 9 L162 5 L180 3 L180 38 L0 38 Z" fill="url(#sparkFill)"/>
+            <path class="spark-line" d="M0 33 L18 31 L36 32 L54 25 L72 27 L90 20 L108 17 L126 12 L144 9 L162 5 L180 3" fill="none" stroke="#A879FF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </aside>
       </div>
