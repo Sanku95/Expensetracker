@@ -1384,11 +1384,6 @@ h2 {
 .device--track .device__screen {
   height: 700px;
 }
-
-.device--tall .device__screen {
-  height: 790px;
-}
-
 .device--recurring .device__screen {
   height: 752px;
 }
@@ -2774,8 +2769,131 @@ h2 {
 .insights__visual {
   position: relative;
   display: grid;
-  place-items: center;
+  gap: 18px;
+  align-content: start;
   padding: 10px 0 0;
+}
+
+.insight-panel {
+  position: relative;
+  padding: 18px 20px 20px;
+  border-radius: 18px;
+  background: linear-gradient(180deg, #121424, #0e1020);
+  border: 1px solid rgba(42, 47, 72, 0.85);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.45);
+}
+
+.insight-panel--dist {
+  width: 100%;
+}
+
+/* layer the second panel on desktop, where there is room beside the copy */
+@media (min-width: 981px) {
+  .insight-panel--dist {
+    width: calc(100% - 26px);
+    margin-left: -26px;
+  }
+}
+
+.insight-panel__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.insight-panel .insight-card__title {
+  font-size: 13px;
+  gap: 8px;
+}
+
+.insight-panel .insight-card__title .icon {
+  width: 15px;
+  height: 15px;
+}
+
+.insight-panel .summary-grid-2x2 {
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.insight-panel .summary-cell {
+  padding: 11px 13px;
+  border-radius: 12px;
+}
+
+.insight-panel .summary-cell__head {
+  font-size: 9.5px;
+  gap: 6px;
+}
+
+.insight-panel .summary-cell__head .icon {
+  width: 13px;
+  height: 13px;
+}
+
+.insight-panel .summary-cell b {
+  margin-top: 6px;
+  font-size: 19px;
+}
+
+.insight-panel .insight-card__sub {
+  font-size: 10px;
+  margin: 6px 0 12px;
+}
+
+.insight-panel .dist-toggles {
+  gap: 7px;
+  margin-bottom: 13px;
+}
+
+.insight-panel .dist-toggle {
+  padding: 6px 11px;
+  border-radius: 9px;
+  font-size: 10px;
+  gap: 5px;
+}
+
+.insight-panel .dist-toggle .icon {
+  width: 12px;
+  height: 12px;
+}
+
+.insight-panel .dist-list {
+  gap: 13px;
+}
+
+.insight-panel .dist-item__top {
+  font-size: 11px;
+  gap: 10px;
+}
+
+.insight-panel .dist-item__name {
+  gap: 7px;
+}
+
+.insight-panel .cat-badge-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+}
+
+.insight-panel .cat-badge-icon .icon {
+  width: 12px;
+  height: 12px;
+}
+
+.insight-panel .dist-item__amount b {
+  font-size: 11px;
+}
+
+.insight-panel .dist-item__amount small {
+  font-size: 9px;
+}
+
+.insight-panel .dist-progress {
+  height: 5px;
+  margin-top: 7px;
 }
 
 .float-card--biggest {
@@ -3047,19 +3165,7 @@ h2 {
   color: var(--text-3);
 }
 
-/* ---------- Insights appscreen contents (from screenshots 1 & 3) ---------- */
-
-.appscreen--insights {
-  padding: 4px 12px 56px;
-  overflow-y: auto;
-  scrollbar-width: none;
-}
-
-.appscreen--insights::-webkit-scrollbar {
-  display: none;
-}
-
-.insights-tabs {
+/* ---------- Insights appscreen contents (from screenshots 1 & 3) ---------- */.insights-tabs {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
@@ -3096,21 +3202,6 @@ h2 {
   color: var(--violet-bright);
 }
 
-.insight-card {
-  margin-bottom: 9px;
-  padding: 11px 12px;
-  border-radius: 13px;
-  background: #121424;
-  border: 1px solid rgba(32, 36, 56, 0.85);
-}
-
-.insight-card__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
 .insight-card__title {
   display: inline-flex;
   align-items: center;
@@ -3123,108 +3214,6 @@ h2 {
 .insight-card__title .icon {
   width: 12px;
   height: 12px;
-}
-
-.insight-card__title--bolt .icon {
-  color: #f59e0b;
-}
-
-.badge--progress {
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: rgba(245, 158, 11, 0.12);
-  border: 1px solid rgba(245, 158, 11, 0.35);
-  font-size: 7px;
-  font-weight: 550;
-  color: #f59e0b;
-  letter-spacing: 0.02em;
-}
-
-.change-banner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 9px 0 11px;
-  padding: 9px 11px;
-  border-radius: 10px;
-  background: #181b2e;
-  border: 1px solid rgba(42, 47, 72, 0.6);
-}
-
-.change-val {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  color: #ff7b7b;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-}
-
-.change-sub {
-  font-size: 7.5px;
-  color: var(--text-3);
-  margin-top: 3px;
-}
-
-.change-sparkle {
-  display: grid;
-  place-items: center;
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  background: #3b2866;
-  color: #b78cff;
-}
-
-.change-sparkle .icon {
-  width: 13px;
-  height: 13px;
-}
-
-.obs-heading {
-  font-size: 8px;
-  font-weight: 600;
-  color: var(--text-3);
-  margin-bottom: 6px;
-  letter-spacing: 0.02em;
-}
-
-.obs-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.obs-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-  padding: 7px 9px;
-  border-radius: 8px;
-  background: #181b2e;
-  border: 1px solid rgba(42, 47, 72, 0.5);
-}
-
-.obs-item__body b {
-  display: block;
-  font-size: 8.5px;
-  font-weight: 550;
-  color: #fff;
-}
-
-.obs-item__body small {
-  display: block;
-  font-size: 7.5px;
-  color: var(--text-3);
-  margin-top: 1px;
-}
-
-.obs-arrow {
-  width: 10px;
-  height: 10px;
-  color: var(--text-3);
-  flex: none;
 }
 
 .summary-grid-2x2 {
@@ -4671,7 +4660,6 @@ h2 {
   .device { max-width: calc(100vw - 44px); }
   .device--hero .device__screen,
   .device--track .device__screen { height: 652px; }
-  .device--tall .device__screen { height: 716px; }
   .device--recurring .device__screen { height: 700px; }
   .device--savings .device__screen { height: 652px; }
   .device__screen { border-width: 8px; border-radius: 42px; }
@@ -4757,7 +4745,6 @@ h2 {
   .hero__actions .play-badge img { height: 48px; }
   .device--hero .device__screen,
   .device--track .device__screen { height: 630px; }
-  .device--tall .device__screen { height: 690px; }
   .device--recurring .device__screen { height: 676px; }
   .device--savings .device__screen { height: 630px; }
   .brand__tag { display: none; }

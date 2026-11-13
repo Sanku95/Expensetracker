@@ -668,162 +668,76 @@
         </div>
 
         <div class="insights__visual reveal">
-          <div class="device device--tall" aria-hidden="true">
-            <span class="device__btn device__btn--power"></span>
-            <span class="device__btn device__btn--vol-a"></span>
-            <span class="device__btn device__btn--vol-b"></span>
-            <div class="device__screen">
-              <span class="device__island"></span>
-              <div class="statusbar">
-                <span>9:41</span>
-                <span class="statusbar__icons">
-                  <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
-                  <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
-                  <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
-                </span>
+          <div class="insight-panel insight-panel--summary">
+            <div class="insight-panel__head">
+              <span class="insight-card__title"><svg class="icon icon--chart" aria-hidden="true"><use href="#i-chart"/></svg> Spending Summary</span>
+            </div>
+            <div class="summary-grid-2x2">
+              <div class="summary-cell">
+                <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> <span>Total Spent</span></div>
+                <b>&#8377;33,295.00</b>
               </div>
-              <div class="appscreen appscreen--insights">
-                <div class="home-top">
-                  <span class="home-title">Insights (Personal) <svg class="icon home-title__chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
-                  <span class="home-actions">
-                    <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-                  </span>
+              <div class="summary-cell">
+                <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> <span>Transactions</span></div>
+                <b>20</b>
+              </div>
+              <div class="summary-cell">
+                <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Daily Average</span></div>
+                <b>&#8377;2,561.15</b>
+              </div>
+              <div class="summary-cell">
+                <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg> <span>Biggest Expense</span></div>
+                <b>&#8377;12,000.00</b>
+              </div>
+            </div>
+          </div>
+
+          <div class="insight-panel insight-panel--dist">
+            <div class="insight-panel__head">
+              <span class="insight-card__title"><svg class="icon icon--pie" aria-hidden="true"><use href="#i-pie"/></svg> Category Distribution</span>
+            </div>
+            <p class="insight-card__sub">Analyze where your cash flows by category.</p>
+
+            <div class="dist-toggles">
+              <span class="dist-toggle is-active"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> By Category</span>
+              <span class="dist-toggle"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> By Pay Type</span>
+            </div>
+
+            <div class="dist-list">
+              <div class="dist-item">
+                <div class="dist-item__top">
+                  <span class="dist-item__name"><span class="cat-badge-icon cat-badge--living"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></span> <b>Rent &amp; Living</b> <small>(2)</small></span>
+                  <span class="dist-item__amount"><b>&#8377;16,000.00</b><small>48.1%</small></span>
                 </div>
-
-                <div class="home-month">
-                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
-                  <span class="home-month__label">November 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
-                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                <div class="dist-progress"><i style="width: 48.1%; background: #4ade9b;"></i></div>
+              </div>
+              <div class="dist-item">
+                <div class="dist-item__top">
+                  <span class="dist-item__name"><span class="cat-badge-icon cat-badge--bills"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span> <b>Bills</b> <small>(5)</small></span>
+                  <span class="dist-item__amount"><b>&#8377;6,355.00</b><small>19.1%</small></span>
                 </div>
-
-                <div class="insights-tabs">
-                  <span class="insight-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> Overview</span>
-                  <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> Recurring</span>
-                  <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg> Savings</span>
+                <div class="dist-progress"><i style="width: 19.1%; background: #ff7b7b;"></i></div>
+              </div>
+              <div class="dist-item">
+                <div class="dist-item__top">
+                  <span class="dist-item__name"><span class="cat-badge-icon cat-badge--gym"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg></span> <b>Gym</b> <small>(6)</small></span>
+                  <span class="dist-item__amount"><b>&#8377;4,415.00</b><small>13.3%</small></span>
                 </div>
-
-                <!-- What Changed This Month Card -->
-                <div class="insight-card insight-card--change">
-                  <div class="insight-card__head">
-                    <span class="insight-card__title insight-card__title--bolt"><svg class="icon icon--bolt" aria-hidden="true"><use href="#i-bolt"/></svg> What Changed This Month?</span>
-                    <span class="badge badge--progress">Month in progress</span>
-                  </div>
-
-                  <div class="change-banner">
-                    <div class="change-banner__text">
-                      <p class="change-val">+₹5,862 (21.4%)</p>
-                      <p class="change-sub">vs first 13 days of last month</p>
-                    </div>
-                    <span class="change-sparkle" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
-                  </div>
-
-                  <p class="obs-heading">Key Observations</p>
-                  <div class="obs-list">
-                    <div class="obs-item">
-                      <div class="obs-item__body">
-                        <b>New purchase: Home Setup</b>
-                        <small>First time buying 'Home Setup' (₹4,000) in Bills.</small>
-                      </div>
-                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
-                    </div>
-                    <div class="obs-item">
-                      <div class="obs-item__body">
-                        <b>Spent more on Gym</b>
-                        <small>You spent ₹3,562 more on Gym than last month.</small>
-                      </div>
-                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
-                    </div>
-                    <div class="obs-item">
-                      <div class="obs-item__body">
-                        <b>Spent more on Bills</b>
-                        <small>You spent ₹3,345 more on Bills than last month.</small>
-                      </div>
-                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
-                    </div>
-                  </div>
+                <div class="dist-progress"><i style="width: 13.3%; background: #34d399;"></i></div>
+              </div>
+              <div class="dist-item">
+                <div class="dist-item__top">
+                  <span class="dist-item__name"><span class="cat-badge-icon cat-badge--trans"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span> <b>Transport</b> <small>(5)</small></span>
+                  <span class="dist-item__amount"><b>&#8377;465.00</b><small>1.4%</small></span>
                 </div>
-
-                <!-- Spending Summary Card (2x2 Grid) -->
-                <div class="insight-card insight-card--summary">
-                  <div class="insight-card__head">
-                    <span class="insight-card__title"><svg class="icon icon--chart" aria-hidden="true"><use href="#i-chart"/></svg> Spending Summary</span>
-                  </div>
-                  <div class="summary-grid-2x2">
-                    <div class="summary-cell">
-                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> <span>Total Spent</span></div>
-                      <b>₹33,295.00</b>
-                    </div>
-                    <div class="summary-cell">
-                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> <span>Transactions</span></div>
-                      <b>20</b>
-                    </div>
-                    <div class="summary-cell">
-                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Daily Average</span></div>
-                      <b>₹2,561.15</b>
-                    </div>
-                    <div class="summary-cell">
-                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg> <span>Biggest Expense</span></div>
-                      <b>₹12,000.00</b>
-                    </div>
-                  </div>
+                <div class="dist-progress"><i style="width: 1.4%; background: #38bdf8;"></i></div>
+              </div>
+              <div class="dist-item">
+                <div class="dist-item__top">
+                  <span class="dist-item__name"><span class="cat-badge-icon cat-badge--food"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg></span> <b>Food</b> <small>(2)</small></span>
+                  <span class="dist-item__amount"><b>&#8377;60.00</b><small>0.2%</small></span>
                 </div>
-
-                <!-- Category Distribution Card -->
-                <div class="insight-card insight-card--dist">
-                  <div class="insight-card__head">
-                    <span class="insight-card__title"><svg class="icon icon--pie" aria-hidden="true"><use href="#i-pie"/></svg> Category Distribution</span>
-                  </div>
-                  <p class="insight-card__sub">Analyze where your cash flows by category.</p>
-
-                  <div class="dist-toggles">
-                    <span class="dist-toggle is-active"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> By Category</span>
-                    <span class="dist-toggle"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> By Pay Type</span>
-                  </div>
-
-                  <div class="dist-list">
-                    <div class="dist-item">
-                      <div class="dist-item__top">
-                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--living"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></span> <b>Rent &amp; Living</b> <small>(2)</small></span>
-                        <span class="dist-item__amount"><b>₹16,000.00</b><small>48.1%</small></span>
-                      </div>
-                      <div class="dist-progress"><i style="width: 48.1%; background: #4ade9b;"></i></div>
-                    </div>
-                    <div class="dist-item">
-                      <div class="dist-item__top">
-                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--bills"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span> <b>Bills</b> <small>(5)</small></span>
-                        <span class="dist-item__amount"><b>₹6,355.00</b><small>19.1%</small></span>
-                      </div>
-                      <div class="dist-progress"><i style="width: 19.1%; background: #ff7b7b;"></i></div>
-                    </div>
-                    <div class="dist-item">
-                      <div class="dist-item__top">
-                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--gym"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg></span> <b>Gym</b> <small>(6)</small></span>
-                        <span class="dist-item__amount"><b>₹4,415.00</b><small>13.3%</small></span>
-                      </div>
-                      <div class="dist-progress"><i style="width: 13.3%; background: #34d399;"></i></div>
-                    </div>
-                    <div class="dist-item">
-                      <div class="dist-item__top">
-                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--trans"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span> <b>Transport</b> <small>(5)</small></span>
-                        <span class="dist-item__amount"><b>₹465.00</b><small>1.4%</small></span>
-                      </div>
-                      <div class="dist-progress"><i style="width: 1.4%; background: #38bdf8;"></i></div>
-                    </div>
-                    <div class="dist-item">
-                      <div class="dist-item__top">
-                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--food"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg></span> <b>Food</b> <small>(2)</small></span>
-                        <span class="dist-item__amount"><b>₹60.00</b><small>0.2%</small></span>
-                      </div>
-                      <div class="dist-progress"><i style="width: 0.2%; background: #fbbf24;"></i></div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="appnav appnav--real">
-                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
-                  <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
-                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
-                </div>
+                <div class="dist-progress"><i style="width: 0.2%; background: #fbbf24;"></i></div>
               </div>
             </div>
           </div>
