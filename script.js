@@ -69,6 +69,31 @@
       var selected = panel.getAttribute("data-panel") === tab.getAttribute("data-persona");
       panel.hidden = !selected;
       panel.classList.toggle("is-active", selected);
+
+      if (selected && !reduceMotion) {
+        var meterBar = panel.querySelector(".meter span");
+        if (meterBar) {
+          var targetWidth = meterBar.style.width || "74%";
+          meterBar.style.transition = "none";
+          meterBar.style.width = "0%";
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              meterBar.style.transition = "width 0.8s cubic-bezier(0.16, 1, 0.3, 1)";
+              meterBar.style.width = targetWidth;
+            });
+          });
+        }
+        var catBars = panel.querySelectorAll(".cat-bar i");
+        catBars.forEach(function (bar, bIdx) {
+          var cTarget = bar.style.width;
+          bar.style.transition = "none";
+          bar.style.width = "0%";
+          setTimeout(function () {
+            bar.style.transition = "width 0.7s cubic-bezier(0.16, 1, 0.3, 1)";
+            bar.style.width = cTarget;
+          }, 60 + bIdx * 40);
+        });
+      }
     });
 
     if (moveFocus) tab.focus();
