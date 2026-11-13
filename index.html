@@ -86,6 +86,12 @@
   <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="3" y="7.5" width="18" height="12.5" rx="2.4"/><path d="M9 7.5V6a2 2 0 012-2h2a2 2 0 012 2v1.5M3 12.5h18"/></symbol>
   <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6.5 7l.8 13h9.4l.8-13M9 7V4.2h6V7"/></symbol>
   <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16v4z"/><path d="M14 6l4 4"/></symbol>
+  <symbol id="i-arrow-up-right" viewBox="0 0 24 24"><path d="M7 17L17 7M7 7h10v10"/></symbol>
+  <symbol id="i-piggy" viewBox="0 0 24 24"><path d="M19 12a5 5 0 00-5-5h-4a5 5 0 00-5 5v3a3 3 0 003 3h1v2h2v-2h4v2h2v-2h1a3 3 0 003-3v-3z"/><circle cx="8" cy="11" r="1"/><path d="M16 7V5"/></symbol>
+  <symbol id="i-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6M10 22h4M12 2a7 7 0 00-7 7c0 2.5 1.5 4.7 3.5 6h7c2-1.3 3.5-3.5 3.5-6a7 7 0 00-7-7z"/></symbol>
+  <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H4a2 2 0 01-2-2V5a2 2 0 012-2h2M18 9h2a2 2 0 002-2V5a2 2 0 00-2-2h-2M6 3h12v7a6 6 0 01-12 0V3z"/><path d="M12 16v5M8 21h8"/></symbol>
+  <symbol id="i-dumbbell" viewBox="0 0 24 24"><path d="M6 5v14M18 5v14M2 9v6M22 9v6M6 12h12"/></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2.5"/><path d="M2 9.5h20M7 4.5l-2 5M12 4.5l-2 5M17 4.5l-2 5"/></symbol>
   <symbol id="i-signal" viewBox="0 0 16 10"><rect x="0" y="6" width="2.2" height="4" rx="0.6"/><rect x="4.2" y="4" width="2.2" height="6" rx="0.6"/><rect x="8.4" y="2" width="2.2" height="8" rx="0.6"/><rect x="12.6" y="0" width="2.2" height="10" rx="0.6"/></symbol>
   <symbol id="i-wifi" viewBox="0 0 16 12"><path d="M8 11.6L5.9 9a3.2 3.2 0 014.2 0L8 11.6zM3.3 6.3l1.5 1.7a5.1 5.1 0 016.4 0l1.5-1.7a7.5 7.5 0 00-9.4 0zM.8 3.6l1.5 1.6a9.7 9.7 0 0111.4 0l1.5-1.6A11.9 11.9 0 00.8 3.6z"/></symbol>
   <symbol id="i-battery" viewBox="0 0 18 10"><rect x="0.5" y="1" width="14" height="8" rx="2" fill="none" stroke="currentColor"/><rect x="2" y="2.5" width="9.5" height="5" rx="1"/><path d="M16.5 3.5v3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></symbol>
@@ -175,75 +181,82 @@
 
             <div class="appscreen appscreen--home">
               <div class="home-top">
-                <span class="home-title">Expense Tracker</span>
+                <span class="home-title">Personal <svg class="icon home-title__chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
                 <span class="home-actions">
                   <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
-                  <svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg>
                 </span>
               </div>
 
               <div class="home-month">
                 <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
-                <span class="home-month__label">August 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                <span class="home-month__label">November 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
                 <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
               </div>
 
               <div class="home-total">
-                <p class="home-total__label">Total Spending This Month</p>
-                <p class="home-total__amount">₹31,179.00</p>
-                <span class="home-total__btn"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></span>
-                <p class="home-total__note">No budget target set. Tap to define monthly budget. <svg class="icon" aria-hidden="true"><use href="#i-pencil"/></svg></p>
-              </div>
-
-              <div class="home-tabs">
-                <span class="home-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-list"/></svg><b>Log Book</b></span>
-                <span class="home-tab"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg><b>Financial Insights</b></span>
+                <p class="home-total__label">November 2026 Spending</p>
+                <p class="home-total__amount">₹33,295.00</p>
+                <span class="home-total__btn" aria-label="Spend trend"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span>
+                <div class="home-total__bottom">
+                  <span class="home-total__note">No budget set for this month</span>
+                  <span class="home-total__target">Set Target</span>
+                </div>
               </div>
 
               <div class="home-chips">
                 <span class="home-chip is-active">All</span>
-                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg> BC</span>
-                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg> Bills</span>
-                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg> Entertainment</span>
-                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg> Food</span>
-                <span class="home-chip"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg> Transport</span>
+                <span class="home-chip"><svg class="icon chip-icon--bills" aria-hidden="true"><use href="#i-file"/></svg> Bills</span>
+                <span class="home-chip"><svg class="icon chip-icon--ent" aria-hidden="true"><use href="#i-film"/></svg> Entertainment</span>
+                <span class="home-chip"><svg class="icon chip-icon--food" aria-hidden="true"><use href="#i-food"/></svg> Food</span>
+                <span class="home-chip"><svg class="icon chip-icon--trans" aria-hidden="true"><use href="#i-car"/></svg> Transport</span>
               </div>
 
               <p class="home-section">All Spending Logs (Personal)</p>
 
-              <div class="home-group"><span>15 Aug 2026</span><span>Total: ₹579.00</span></div>
-              <div class="home-tx">
-                <span class="home-tx__icon home-tx__icon--shop"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
-                <span class="home-tx__main">
-                  <b>Perfume</b>
-                  <small><em class="cat cat--shop">Shopping</em><i>·</i>15 Aug 2026<span class="upi">UPI</span></small>
-                </span>
-                <span class="home-tx__right"><b>₹579.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
-              </div>
-
-              <div class="home-group"><span>14 Aug 2026</span><span>Total: ₹3,211.00</span></div>
+              <div class="home-group"><span>08 Nov 2026</span><span>Total: ₹26,800.00</span></div>
               <div class="home-tx">
                 <span class="home-tx__icon home-tx__icon--bills"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span>
                 <span class="home-tx__main">
-                  <b>Rtr insurance</b>
-                  <small><em class="cat cat--bills">Bills</em><i>·</i>14 Aug 2026<span class="upi">UPI</span></small>
+                  <b>Quarterly Maintenance</b>
+                  <small><em class="cat cat--bills">Bills</em><i>·</i><span class="upi">UPI</span></small>
                 </span>
-                <span class="home-tx__right"><b>₹1,350.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+                <span class="home-tx__right"><b>₹12,000.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
               </div>
+
               <div class="home-tx">
-                <span class="home-tx__icon home-tx__icon--health"><svg class="icon" aria-hidden="true"><use href="#i-heart"/></svg></span>
+                <span class="home-tx__icon home-tx__icon--gym"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg></span>
                 <span class="home-tx__main">
-                  <b>Natural Life Protein</b>
-                  <small><em class="cat cat--health">Health</em><i>·</i>14 Aug 2026<span class="upi">UPI</span></small>
+                  <b>Annual Gym Membership</b>
+                  <small><em class="cat cat--gym">Gym</em><i>·</i><span class="upi">UPI</span></small>
                 </span>
-                <span class="home-tx__right"><b>₹1,861.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+                <span class="home-tx__right"><b>₹10,000.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
               </div>
 
-              <span class="home-fab"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+              <div class="home-tx">
+                <span class="home-tx__icon home-tx__icon--bills"><svg class="icon" aria-hidden="true"><use href="#i-bolt"/></svg></span>
+                <span class="home-tx__main">
+                  <b>Home Fiber &amp; Utilities</b>
+                  <small><em class="cat cat--bills">Bills</em><i>·</i><span class="upi">UPI</span></small>
+                </span>
+                <span class="home-tx__right"><b>₹4,000.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+              </div>
 
-              <div class="appnav appnav--home">
-                <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-user"/></svg></span>Personal</span>
-                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></span>Business</span>
+              <div class="home-tx">
+                <span class="home-tx__icon home-tx__icon--shop"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+                <span class="home-tx__main">
+                  <b>Diwali Home Lighting</b>
+                  <small><em class="cat cat--shop">Shopping</em><i>·</i><span class="upi">UPI</span></small>
+                  <span class="tx-subtag">Diwali</span>
+                </span>
+                <span class="home-tx__right"><b>₹800.00</b><svg class="icon" aria-hidden="true"><use href="#i-trash"/></svg></span>
+              </div>
+
+              <span class="home-fab" aria-label="Add transaction"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></span>
+
+              <div class="appnav appnav--real">
+                <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
               </div>
             </div>
           </div>
@@ -506,8 +519,8 @@
             </div>
             <div class="appscreen">
               <div class="screen-head">
-                <span class="screen-title">Log Book</span>
-                <span class="app-iconbtn"><svg class="icon"><use href="#i-search"/></svg></span>
+                <span class="home-title">Personal <svg class="icon home-title__chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+                <span class="home-actions"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></span>
               </div>
               <div class="month-nav">
                 <svg class="icon"><use href="#i-chevron-left"/></svg>
@@ -578,10 +591,10 @@
                 </ul>
               </div>
 
-              <div class="appnav">
-                <span class="appnav__item is-active"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
-                <span class="appnav__item"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
-                <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+              <div class="appnav appnav--real">
+                <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
               </div>
 
               <div class="add-card" aria-hidden="true">
@@ -663,71 +676,147 @@
                   <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
                 </span>
               </div>
-              <div class="appscreen">
-                <div class="screen-head">
-                  <span class="screen-title">Insights</span>
-                  <span class="persona-pill persona-pill--sm"><i class="dot dot--personal"></i> Personal</span>
-                </div>
-                <div class="tabs">
-                  <span class="tab is-active">Overview</span>
-                  <span class="tab">Recurring</span>
-                  <span class="tab">Savings</span>
+              <div class="appscreen appscreen--insights">
+                <div class="home-top">
+                  <span class="home-title">Insights (Personal) <svg class="icon home-title__chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+                  <span class="home-actions">
+                    <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+                  </span>
                 </div>
 
-                <div class="change-card">
-                  <div class="change-card__top">
-                    <span><svg class="icon"><use href="#i-sparkles"/></svg> What changed</span>
-                    <span class="delta-pill">−₹2,140</span>
+                <div class="home-month">
+                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+                  <span class="home-month__label">November 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                </div>
+
+                <div class="insights-tabs">
+                  <span class="insight-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> Overview</span>
+                  <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> Recurring</span>
+                  <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg> Savings</span>
+                </div>
+
+                <!-- What Changed This Month Card -->
+                <div class="insight-card insight-card--change">
+                  <div class="insight-card__head">
+                    <span class="insight-card__title insight-card__title--bolt"><svg class="icon icon--bolt" aria-hidden="true"><use href="#i-bolt"/></svg> What Changed This Month?</span>
+                    <span class="badge badge--progress">Month in progress</span>
                   </div>
-                  <p><b>You spent less than October.</b></p>
-                  <p class="change-card__sub">Food down 18% · Shopping up ₹1,240</p>
-                </div>
 
-                <div class="metric-grid">
-                  <div><span>Total spent</span><b>₹18,420</b></div>
-                  <div><span>Transactions</span><b>64</b></div>
-                  <div><span>Daily average</span><b>₹614</b></div>
-                  <div><span>Biggest expense</span><b>₹4,250</b></div>
-                </div>
+                  <div class="change-banner">
+                    <div class="change-banner__text">
+                      <p class="change-val">+₹5,862 (21.4%)</p>
+                      <p class="change-sub">vs first 13 days of last month</p>
+                    </div>
+                    <span class="change-sparkle" aria-hidden="true"><svg class="icon" aria-hidden="true"><use href="#i-sparkles"/></svg></span>
+                  </div>
 
-                <div class="chart-card">
-                  <div class="chart-card__head"><span>Where it went</span><span>By category</span></div>
-                  <div class="donut-row">
-                    <div class="donut"><div class="donut__hole"><b>₹18.4k</b><small>this month</small></div></div>
-                    <ul class="legend">
-                      <li><i style="--c:#A879FF"></i>Food <b>32%</b></li>
-                      <li><i style="--c:#8050F5"></i>Shopping <b>21%</b></li>
-                      <li><i style="--c:#6A45C9"></i>Transport <b>17%</b></li>
-                      <li><i style="--c:#4A3187"></i>Bills <b>14%</b></li>
-                      <li><i style="--c:#2C2557"></i>Other <b>16%</b></li>
-                    </ul>
+                  <p class="obs-heading">Key Observations</p>
+                  <div class="obs-list">
+                    <div class="obs-item">
+                      <div class="obs-item__body">
+                        <b>New purchase: Home Setup</b>
+                        <small>First time buying 'Home Setup' (₹4,000) in Bills.</small>
+                      </div>
+                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                    </div>
+                    <div class="obs-item">
+                      <div class="obs-item__body">
+                        <b>Spent more on Gym</b>
+                        <small>You spent ₹3,562 more on Gym than last month.</small>
+                      </div>
+                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                    </div>
+                    <div class="obs-item">
+                      <div class="obs-item__body">
+                        <b>Spent more on Bills</b>
+                        <small>You spent ₹3,345 more on Bills than last month.</small>
+                      </div>
+                      <svg class="icon obs-arrow" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                    </div>
                   </div>
                 </div>
 
-                <div class="chart-card">
-                  <div class="chart-card__head"><span>Weekly spending</span><span>Mon–Sun</span></div>
-                  <div class="bars">
-                    <div class="bar is-peak"><i style="--h:100%"></i><span>W1</span></div>
-                    <div class="bar"><i style="--h:76%"></i><span>W2</span></div>
-                    <div class="bar"><i style="--h:92%"></i><span>W3</span></div>
-                    <div class="bar"><i style="--h:55%"></i><span>W4</span></div>
-                    <div class="bar"><i style="--h:27%"></i><span>W5</span></div>
+                <!-- Spending Summary Card (2x2 Grid) -->
+                <div class="insight-card insight-card--summary">
+                  <div class="insight-card__head">
+                    <span class="insight-card__title"><svg class="icon icon--chart" aria-hidden="true"><use href="#i-chart"/></svg> Spending Summary</span>
                   </div>
-                  <p class="chart-note">Highest week: W1 · ₹5,240</p>
+                  <div class="summary-grid-2x2">
+                    <div class="summary-cell">
+                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> <span>Total Spent</span></div>
+                      <b>₹33,295.00</b>
+                    </div>
+                    <div class="summary-cell">
+                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> <span>Transactions</span></div>
+                      <b>20</b>
+                    </div>
+                    <div class="summary-cell">
+                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg> <span>Daily Average</span></div>
+                      <b>₹2,561.15</b>
+                    </div>
+                    <div class="summary-cell">
+                      <div class="summary-cell__head"><svg class="icon" aria-hidden="true"><use href="#i-trophy"/></svg> <span>Biggest Expense</span></div>
+                      <b>₹12,000.00</b>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="chart-card">
-                  <div class="chart-card__head"><span>Top expenses</span><span>This month</span></div>
-                  <ul class="top-list">
-                    <li><span>Croma · Shopping</span><b>₹4,250</b></li>
-                    <li><span>MakeMyTrip · Travel</span><b>₹3,120</b></li>
-                  </ul>
+                <!-- Category Distribution Card -->
+                <div class="insight-card insight-card--dist">
+                  <div class="insight-card__head">
+                    <span class="insight-card__title"><svg class="icon icon--pie" aria-hidden="true"><use href="#i-pie"/></svg> Category Distribution</span>
+                  </div>
+                  <p class="insight-card__sub">Analyze where your cash flows by category.</p>
+
+                  <div class="dist-toggles">
+                    <span class="dist-toggle is-active"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> By Category</span>
+                    <span class="dist-toggle"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg> By Pay Type</span>
+                  </div>
+
+                  <div class="dist-list">
+                    <div class="dist-item">
+                      <div class="dist-item__top">
+                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--living"><svg class="icon" aria-hidden="true"><use href="#i-sliders"/></svg></span> <b>Rent &amp; Living</b> <small>(2)</small></span>
+                        <span class="dist-item__amount"><b>₹16,000.00</b><small>48.1%</small></span>
+                      </div>
+                      <div class="dist-progress"><i style="width: 48.1%; background: #4ade9b;"></i></div>
+                    </div>
+                    <div class="dist-item">
+                      <div class="dist-item__top">
+                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--bills"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></span> <b>Bills</b> <small>(5)</small></span>
+                        <span class="dist-item__amount"><b>₹6,355.00</b><small>19.1%</small></span>
+                      </div>
+                      <div class="dist-progress"><i style="width: 19.1%; background: #ff7b7b;"></i></div>
+                    </div>
+                    <div class="dist-item">
+                      <div class="dist-item__top">
+                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--gym"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg></span> <b>Gym</b> <small>(6)</small></span>
+                        <span class="dist-item__amount"><b>₹4,415.00</b><small>13.3%</small></span>
+                      </div>
+                      <div class="dist-progress"><i style="width: 13.3%; background: #34d399;"></i></div>
+                    </div>
+                    <div class="dist-item">
+                      <div class="dist-item__top">
+                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--trans"><svg class="icon" aria-hidden="true"><use href="#i-car"/></svg></span> <b>Transport</b> <small>(5)</small></span>
+                        <span class="dist-item__amount"><b>₹465.00</b><small>1.4%</small></span>
+                      </div>
+                      <div class="dist-progress"><i style="width: 1.4%; background: #38bdf8;"></i></div>
+                    </div>
+                    <div class="dist-item">
+                      <div class="dist-item__top">
+                        <span class="dist-item__name"><span class="cat-badge-icon cat-badge--food"><svg class="icon" aria-hidden="true"><use href="#i-food"/></svg></span> <b>Food</b> <small>(2)</small></span>
+                        <span class="dist-item__amount"><b>₹60.00</b><small>0.2%</small></span>
+                      </div>
+                      <div class="dist-progress"><i style="width: 0.2%; background: #fbbf24;"></i></div>
+                    </div>
+                  </div>
                 </div>
 
-                <div class="appnav">
-                  <span class="appnav__item"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
-                  <span class="appnav__item is-active"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
-                  <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+                <div class="appnav appnav--real">
+                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
+                  <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
+                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
                 </div>
               </div>
             </div>
@@ -780,14 +869,14 @@
               </span>
             </div>
             <div class="appscreen">
-              <div class="screen-head">
-                <span class="screen-title">Insights</span>
-                <span class="persona-pill persona-pill--sm"><i class="dot dot--personal"></i> Personal</span>
+              <div class="home-top">
+                <span class="home-title">Insights (Personal) <svg class="icon home-title__chevron" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+                <span class="home-actions"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></span>
               </div>
-              <div class="tabs">
-                <span class="tab">Overview</span>
-                <span class="tab is-active">Recurring</span>
-                <span class="tab">Savings</span>
+              <div class="insights-tabs">
+                <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg> Overview</span>
+                <span class="insight-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg> Recurring</span>
+                <span class="insight-tab"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg> Savings</span>
               </div>
 
               <div class="commit-grid">
@@ -851,10 +940,10 @@
                 </li>
               </ul>
 
-              <div class="appnav">
-                <span class="appnav__item"><svg class="icon"><use href="#i-wallet"/></svg>Persona</span>
-                <span class="appnav__item is-active"><svg class="icon"><use href="#i-chart"/></svg>Insights</span>
-                <span class="appnav__item"><svg class="icon"><use href="#i-sliders"/></svg>Settings</span>
+              <div class="appnav appnav--real">
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
+                <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
+                <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
               </div>
             </div>
           </div>
@@ -883,32 +972,57 @@
         </div>
 
         <div class="savings-cards">
+          <div class="savings-cards__header">
+            <span class="savings-cards__icon" aria-hidden="true"><svg class="icon"><use href="#i-piggy"/></svg></span>
+            <div>
+              <h3>Smart Savings Insights</h3>
+              <p>Actionable suggestions based on your recent spending trends</p>
+            </div>
+          </div>
+
           <article class="save-card">
             <div class="save-card__top">
-              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+              <span class="save-card__title">Review your Gym Spending</span>
               <span class="tag">Review</span>
             </div>
-            <h3>Categories on the move</h3>
-            <p>Shopping is up on last month, across 8 orders.</p>
-            <div class="save-card__metric"><b>+₹1,240</b><span>vs October · estimate</span></div>
+            <p class="save-card__stat">You spent ₹3,122 more on Gym than last month.</p>
+            <div class="action-box">
+              <div class="action-box__head">
+                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
+                <span>What you can do</span>
+              </div>
+              <p>Check if you paid for anything extra or if your membership cost increased.</p>
+            </div>
           </article>
+
           <article class="save-card">
             <div class="save-card__top">
-              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>
-              <span class="tag">Pattern</span>
+              <span class="save-card__title">Check Your Subscriptions</span>
+              <span class="tag">Subscriptions</span>
             </div>
-            <h3>Small, often</h3>
-            <p>23 purchases under ₹150 added up this month.</p>
-            <div class="save-card__metric"><b>₹2,180</b><span>across small purchases</span></div>
+            <p class="save-card__stat">You have 4 regular payments costing ₹16,610 every month.</p>
+            <div class="action-box">
+              <div class="action-box__head">
+                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
+                <span>What you can do</span>
+              </div>
+              <p>Check which services you still use. Cancel the ones you no longer need.</p>
+            </div>
           </article>
+
           <article class="save-card">
             <div class="save-card__top">
-              <span class="save-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg></span>
-              <span class="tag">Review</span>
+              <span class="save-card__title">Frequent Small UPI Payments</span>
+              <span class="tag">UPI</span>
             </div>
-            <h3>Recurring, reconsidered</h3>
-            <p>Your active commitments, collected in one place.</p>
-            <div class="save-card__metric"><b>₹20,447<span>/mo</span></b><span>4 active · 1 paused</span></div>
+            <p class="save-card__stat">You made 5 small UPI payments this month. Together, they cost ₹190.</p>
+            <div class="action-box">
+              <div class="action-box__head">
+                <svg class="icon action-bulb" aria-hidden="true"><use href="#i-lightbulb"/></svg>
+                <span>What you can do</span>
+              </div>
+              <p>Check where you make frequent small purchases. Setting a weekly limit may help you keep track.</p>
+            </div>
           </article>
         </div>
       </div>
