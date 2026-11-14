@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="styles.css?v=2">
 <script>
   document.documentElement.classList.add("js");
 </script>
@@ -917,12 +917,122 @@
         </div>
 
         <div class="savings-visual">
-          <div class="device device--savings" aria-label="Smart Savings screen preview">
+          <div class="device device--savings" role="img" aria-label="Smart Savings screen: about ₹6,200 identified in low-value spending, roughly ₹2,480 in potential savings, and two saving tips for this month">
             <span class="device__btn device__btn--power"></span>
             <span class="device__btn device__btn--vol-a"></span>
             <span class="device__btn device__btn--vol-b"></span>
             <div class="device__screen">
-              <img src="assets/savings-insights.webp" alt="Smart Savings Insights in Expense Tracker" class="device__screenshot" width="458" height="1024" decoding="async">
+              <span class="device__island"></span>
+              <div class="statusbar">
+                <span>13:35</span>
+                <span class="statusbar__icons">
+                  <svg viewBox="0 0 16 10"><use href="#i-signal"/></svg>
+                  <svg viewBox="0 0 16 12"><use href="#i-wifi"/></svg>
+                  <svg viewBox="0 0 18 10"><use href="#i-battery"/></svg>
+                </span>
+              </div>
+
+              <div class="appscreen appscreen--savings" aria-hidden="true">
+                <div class="sav-top">
+                  <span class="sav-title">Insights (Personal) <svg class="icon" aria-hidden="true"><use href="#i-chevron-down"/></svg></span>
+                  <span class="sav-dl"><svg class="icon" aria-hidden="true"><use href="#i-download"/></svg></span>
+                </div>
+
+                <div class="sav-month">
+                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg>
+                  <span class="sav-month__label">November 2026 <svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                  <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                </div>
+
+                <div class="sav-tabs">
+                  <span class="sav-tab"><svg class="icon" aria-hidden="true"><use href="#i-pie"/></svg><span>Overview</span></span>
+                  <span class="sav-tab"><svg class="icon" aria-hidden="true"><use href="#i-repeat"/></svg><span>Recurring</span></span>
+                  <span class="sav-tab is-active"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg><span>Savings</span></span>
+                </div>
+
+                <div class="sav-card">
+                  <div class="sav-card__head">
+                    <span class="sav-card__icon"><svg class="icon" aria-hidden="true"><use href="#i-piggy"/></svg></span>
+                    <div class="sav-card__copy">
+                      <p class="sav-card__title">Savings Insights</p>
+                      <p class="sav-card__sub">Actionable ways to save based on your spending this month.</p>
+                    </div>
+                  </div>
+
+                  <div class="sav-stats">
+                    <div class="sav-stat">
+                      <b>₹6,200</b>
+                      <small>Identified spend <span class="sav-info" title="Sum of low-value and drifting commitments">i</span></small>
+                    </div>
+                    <div class="sav-stat sav-stat--good">
+                      <b>~₹2,480</b>
+                      <small>Potential savings</small>
+                    </div>
+                  </div>
+
+                  <div class="sav-progress"><i style="width: 40%"></i></div>
+                  <p class="sav-progress__note">~40% of ₹6,200</p>
+                </div>
+
+                <div class="sav-sechead">
+                  <b>Top Saving Tips</b>
+                  <span>Most impact this month</span>
+                </div>
+
+                <div class="sav-tip">
+                  <div class="sav-tip__head">
+                    <span class="sav-tip__icon"><svg class="icon" aria-hidden="true"><use href="#i-arrow-up-right"/></svg></span>
+                    <span class="sav-tip__title">Trim Small UPI Buys</span>
+                    <span class="sav-pill sav-pill--micro">Micro-Goal</span>
+                  </div>
+                  <p class="sav-tip__body">24 transactions (₹20 – ₹100) totaling ₹1,680, averaging ₹70 each.</p>
+                  <div class="sav-tip__action">
+                    <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+                    <span>Skip half of them and save ~₹840</span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                  </div>
+                </div>
+
+                <div class="sav-tip">
+                  <div class="sav-tip__head">
+                    <span class="sav-tip__icon sav-tip__icon--gym"><svg class="icon" aria-hidden="true"><use href="#i-dumbbell"/></svg></span>
+                    <span class="sav-tip__title">Review Gym Spending</span>
+                    <span class="sav-pill sav-pill--review">Review</span>
+                  </div>
+                  <p class="sav-tip__body">Your gym expenses are higher than your 3-month average.</p>
+                  <div class="sav-tip__action">
+                    <svg class="icon" aria-hidden="true"><use href="#i-check"/></svg>
+                    <span>Consider an annual plan to save ~₹1,640</span>
+                    <svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg>
+                  </div>
+                </div>
+
+                <div class="sav-sechead sav-sechead--more">
+                  <b>More Opportunities</b>
+                  <span>Other ways to save</span>
+                </div>
+
+                <div class="sav-more">
+                  <span class="sav-more__card">
+                    <span class="sav-more__icon sav-more__icon--warn"><svg class="icon" aria-hidden="true"><use href="#i-calendar"/></svg></span>
+                    <span>Plan ahead for recurring costs</span>
+                  </span>
+                  <span class="sav-more__card">
+                    <span class="sav-more__icon sav-more__icon--shop"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></span>
+                    <span>Avoid impulse buys</span>
+                  </span>
+                  <span class="sav-more__card">
+                    <span class="sav-more__icon sav-more__icon--chart"><svg class="icon" aria-hidden="true"><use href="#i-trend"/></svg></span>
+                    <span>Compare subscriptions</span>
+                  </span>
+                </div>
+
+                <div class="appnav appnav--real">
+                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-wallet"/></svg></span>Personal</span>
+                  <span class="appnav__item is-active"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg></span>Insights</span>
+                  <span class="appnav__item"><span class="appnav__pill"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg></span>Settings</span>
+                </div>
+              </div>
             </div>
           </div>
 

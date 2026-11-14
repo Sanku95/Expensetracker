@@ -1390,17 +1390,10 @@ h2 {
 
 .device--savings .device__screen {
   height: 716px;
-  background: #08090f;
+  background: #07070d;
   padding: 0;
-  display: block;
-}
-
-.device__screenshot {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
+  container-type: size;
+  container-name: savscreen;
 }
 
 .device__btn {
@@ -4468,6 +4461,437 @@ h2 {
 .export-grid > .export-card:nth-child(2) { --d: 80ms; }
 .export-grid > .export-card:nth-child(3) { --d: 160ms; }
 .export-grid > .export-card:nth-child(4) { --d: 240ms; }
+
+/* ---------- Savings screen (section 06) ----------
+   Built in markup rather than as a screenshot so the figures stay in
+   step with the copy beside it. Everything inside is sized in em off a
+   container-relative root, so the same screen fits every phone height
+   without clipping. */
+
+.appscreen--savings {
+  --sav-green: #4ade9b;
+  --sav-green-soft: #7ee2b0;
+  padding: 0.3em 0.92em 4.2em;
+  font-size: 13px;
+  font-size: min(1.94cqh, 4.3cqw);
+  line-height: 1.3;
+}
+
+/* Older engines without container units: step the root down with the
+   surface height instead of relying on cqh. */
+@supports not (font-size: 1cqh) {
+  @media (max-width: 900px) {
+    .appscreen--savings { font-size: 12.3px; }
+  }
+  @media (max-width: 420px) {
+    .appscreen--savings { font-size: 11.2px; }
+  }
+}
+
+.appscreen--savings > * {
+  flex: none;
+}
+
+.sav-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.1em 0.05em 0.7em;
+}
+
+.sav-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.28em;
+  font-family: var(--font-display);
+  font-size: 1.4em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.sav-title .icon {
+  width: 0.58em;
+  height: 0.58em;
+  color: var(--violet-bright);
+}
+
+.sav-dl {
+  display: grid;
+  place-items: center;
+  width: 2.1em;
+  height: 2.1em;
+  flex: none;
+  border-radius: 0.62em;
+  border: 1px solid rgba(168, 121, 255, 0.3);
+  background: rgba(128, 80, 245, 0.16);
+  color: var(--violet-bright);
+}
+
+.sav-dl .icon {
+  width: 1em;
+  height: 1em;
+}
+
+.sav-month {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5em;
+  padding: 0.46em 0.62em;
+  margin-bottom: 0.62em;
+  border: 1px solid rgba(42, 47, 72, 0.9);
+  border-radius: 0.72em;
+  background: rgba(18, 20, 36, 0.85);
+  font-size: 0.86em;
+  font-weight: 600;
+  color: #fff;
+}
+
+.sav-month > .icon {
+  width: 0.95em;
+  height: 0.95em;
+  color: var(--text-3);
+}
+
+.sav-month__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+}
+
+.sav-month__label .icon {
+  width: 0.95em;
+  height: 0.95em;
+  color: var(--violet-bright);
+}
+
+.sav-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.34em;
+  margin-bottom: 0.72em;
+}
+
+.sav-tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.22em;
+  padding: 0.42em 0.15em;
+  border: 1px solid transparent;
+  border-radius: 0.62em;
+  background: transparent;
+  font-size: 0.7em;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--text-3);
+}
+
+.sav-tab .icon {
+  width: 1.12em;
+  height: 1.12em;
+}
+
+.sav-tab.is-active {
+  border-color: rgba(168, 121, 255, 0.55);
+  background: linear-gradient(180deg, rgba(128, 80, 245, 0.42), rgba(128, 80, 245, 0.18));
+  color: #fff;
+}
+
+.sav-tab.is-active .icon {
+  color: #fff;
+}
+
+.sav-card {
+  padding: 0.8em 0.9em 0.7em;
+  margin-bottom: 0.75em;
+  border: 1px solid rgba(168, 121, 255, 0.3);
+  border-radius: 0.92em;
+  background:
+    radial-gradient(120% 130% at 100% 0%, rgba(128, 80, 245, 0.45), transparent 62%),
+    linear-gradient(158deg, #251a42, #171327 72%);
+}
+
+.sav-card__head {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6em;
+}
+
+.sav-card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.35em;
+  height: 2.35em;
+  flex: none;
+  border-radius: 0.7em;
+  border: 1px solid rgba(168, 121, 255, 0.38);
+  background: rgba(168, 121, 255, 0.16);
+  color: #e3ccff;
+}
+
+.sav-card__icon .icon {
+  width: 1.35em;
+  height: 1.35em;
+}
+
+.sav-card__title {
+  font-size: 1em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.sav-card__sub {
+  margin-top: 0.15em;
+  font-size: 0.66em;
+  line-height: 1.45;
+  color: #c7bfe4;
+}
+
+.sav-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: 0.7em;
+  padding-top: 0.68em;
+  border-top: 1px solid rgba(168, 121, 255, 0.2);
+}
+
+.sav-stat + .sav-stat {
+  padding-left: 0.85em;
+  border-left: 1px solid rgba(168, 121, 255, 0.2);
+}
+
+.sav-stat b {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.4em;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #fff;
+}
+
+.sav-stat--good b {
+  color: var(--sav-green);
+}
+
+.sav-stat small {
+  display: flex;
+  align-items: center;
+  gap: 0.28em;
+  margin-top: 0.2em;
+  font-size: 0.6em;
+  color: #a99fc6;
+}
+
+.sav-info {
+  display: inline-grid;
+  place-items: center;
+  width: 1.25em;
+  height: 1.25em;
+  border-radius: 50%;
+  border: 1px solid rgba(169, 159, 198, 0.55);
+  font-size: 0.9em;
+  font-style: normal;
+  line-height: 1;
+  color: rgba(200, 192, 224, 0.8);
+}
+
+.sav-progress {
+  height: 0.32em;
+  margin-top: 0.7em;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+}
+
+.sav-progress i {
+  display: block;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #35c98a, var(--sav-green));
+}
+
+.sav-progress__note {
+  margin-top: 0.3em;
+  font-size: 0.58em;
+  text-align: right;
+  color: #b6abd4;
+}
+
+.sav-sechead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.5em;
+  margin: 0.1em 0 0.45em;
+}
+
+.sav-sechead b {
+  font-size: 0.96em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.sav-sechead span {
+  font-size: 0.6em;
+  color: var(--text-3);
+}
+
+.sav-sechead--more {
+  margin-top: 0.55em;
+}
+
+.sav-tip {
+  padding: 0.6em 0.68em 0.55em;
+  margin-bottom: 0.5em;
+  border: 1px solid rgba(42, 47, 72, 0.85);
+  border-radius: 0.8em;
+  background: #14162a;
+}
+
+.sav-tip__head {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.sav-tip__icon {
+  display: grid;
+  place-items: center;
+  width: 2em;
+  height: 2em;
+  flex: none;
+  border-radius: 0.6em;
+  border: 1px solid rgba(168, 121, 255, 0.3);
+  background: rgba(128, 80, 245, 0.22);
+  color: #c9a6ff;
+}
+
+.sav-tip__icon--gym {
+  border-color: rgba(96, 165, 250, 0.32);
+  background: rgba(56, 132, 255, 0.18);
+  color: #8fc4ff;
+}
+
+.sav-tip__icon .icon {
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.sav-tip__title {
+  font-size: 0.86em;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.sav-pill {
+  margin-left: auto;
+  padding: 0.24em 0.5em;
+  flex: none;
+  border-radius: 999px;
+  font-size: 0.54em;
+  font-weight: 550;
+  letter-spacing: 0.01em;
+}
+
+.sav-pill--micro {
+  border: 1px solid rgba(168, 121, 255, 0.42);
+  background: rgba(128, 80, 245, 0.2);
+  color: #cdb2ff;
+}
+
+.sav-pill--review {
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  background: rgba(56, 132, 255, 0.14);
+  color: #a9d0ff;
+}
+
+.sav-tip__body {
+  margin-top: 0.4em;
+  font-size: 0.64em;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+
+.sav-tip__action {
+  display: flex;
+  align-items: center;
+  gap: 0.34em;
+  margin-top: 0.5em;
+  padding: 0.42em 0.5em;
+  border: 1px solid rgba(74, 222, 155, 0.26);
+  border-radius: 0.5em;
+  background: rgba(74, 222, 155, 0.11);
+  font-size: 0.62em;
+  line-height: 1.3;
+  color: var(--sav-green-soft);
+}
+
+.sav-tip__action span {
+  flex: 1;
+}
+
+.sav-tip__action .icon {
+  width: 1em;
+  height: 1em;
+}
+
+.sav-tip__action .icon:first-child {
+  color: var(--sav-green);
+}
+
+.sav-more {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4em;
+}
+
+.sav-more__card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45em;
+  padding: 0.5em 0.45em;
+  border: 1px solid rgba(42, 47, 72, 0.85);
+  border-radius: 0.62em;
+  background: #14162a;
+  font-size: 0.58em;
+  line-height: 1.35;
+  color: var(--text-2);
+}
+
+.sav-more__icon {
+  display: grid;
+  place-items: center;
+  width: 2.2em;
+  height: 2.2em;
+  border-radius: 0.55em;
+}
+
+.sav-more__icon .icon {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+.sav-more__icon--warn {
+  background: rgba(245, 158, 11, 0.16);
+  color: #f7bf5b;
+}
+
+.sav-more__icon--shop {
+  background: rgba(168, 121, 255, 0.16);
+  color: #c9a6ff;
+}
+
+.sav-more__icon--chart {
+  background: rgba(56, 132, 255, 0.16);
+  color: #8fc4ff;
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {
